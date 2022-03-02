@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+  <div class="app">
     <router-view />
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import "./assets/font.css";
-#app {
+.app {
   font-family: "Gen Jyuu Gothic";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
