@@ -1,0 +1,38 @@
+import logging
+from logging.handlers import TimedRotatingFileHandler
+
+from flask import Flask
+from flask_cors import CORS
+
+from app.commands import create_tables, del_user, delete_tables
+from app.extinsions import db, migrate
+from app.server import server
+from app.user import user
+
+
+def create_app():
+    app = Flask(__name__)
+    CORS(app)
+    app.config.from_pyfile('config.py')
+    app.debug = True
+
+    formatter = logging.Formatter(
+        "[%(asctime)s][%(filename)s:%(lineno)d][%(levelname)s][%(thread)d] - %(message)s")
+    handler = TimedRotatingFileHandler(
+        "flask.log", when="D", interval=1, backupCount=10,
+        encoding="UTF-8", delay=False, utc=True)
+    handler.setLevel(logging.DEBUG)
+    app.logger.addHandler(handler)
+    handler.setFormatter(formatter)
+
+    db.init_app(app)
+    migrate.init_app(app, db)
+
+    app.register_blueprint(user, url_prefix='/user')
+    app.register_blueprint(server, url_prefix='/server')
+
+    app.cli.add_command(create_tables)
+    app.cli.add_command(delete_tables)
+    app.cli.add_command(del_user)
+
+    return app
