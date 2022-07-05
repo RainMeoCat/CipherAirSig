@@ -1,4 +1,4 @@
 from flask import Blueprint
 
-user = Blueprint('user', __name__,)
+server = Blueprint('server', __name__,)
 from . import routes

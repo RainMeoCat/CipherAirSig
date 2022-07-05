@@ -4,10 +4,10 @@ from mysql.connector import Error
 try:
     # 連接 MySQL/MariaDB 資料庫
     connection = mysql.connector.connect(
-        host='10.211.55.4',          # 主機名稱
-        database='bas', # 資料庫名稱
-        user='shiya',        # 帳號
-        password='zxcv4311')  # 密碼
+        host='140.133.74.170',          # 主機名稱
+        database='bas',  # 資料庫名稱
+        user='italab',        # 帳號
+        password='ma308')  # 密碼
 
     if connection.is_connected():
 

@@ -1,6 +1,6 @@
 from app.server import server
 from flask import jsonify
-from app.server.check_service import check_database, check_email_service
+from app.server.check_service import check_database
 from datetime import datetime, timedelta, timezone
 from flask import current_app, request
 
@@ -17,11 +17,10 @@ def server_status():
     """
 
     database = check_database()
-    email = check_email_service()
     update_time = datetime.utcnow().astimezone(
         timezone(offset=timedelta(hours=8))).isoformat()
     info = {"update_time": update_time,
-            "data": [database, email]
+            "data": [database]
             }
     log = {"ip": request.remote_addr, "data": info,  "api": request.path}
     current_app.logger.info(log)
