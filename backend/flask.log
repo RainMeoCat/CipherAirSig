@@ -1,0 +1,106 @@
+[2022-07-17 16:18:55,094][routes.py:104][WARNING][22252] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 16:18:55,170][routes.py:114][WARNING][22252] - {'api': '/user/register', 'email': 'test@nkust.edu.tw', 'sql': IntegrityError('(pymysql.err.IntegrityError) (1048, "Column \'account\' cannot be null")')}
+[2022-07-17 16:19:03,761][routes.py:104][WARNING][22276] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 16:19:03,834][routes.py:114][WARNING][22276] - {'api': '/user/register', 'email': 'test@nkust.edu.tw', 'sql': IntegrityError('(pymysql.err.IntegrityError) (1048, "Column \'account\' cannot be null")')}
+[2022-07-17 16:20:11,102][routes.py:105][WARNING][22288] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 16:20:11,214][routes.py:111][INFO][22288] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 16:20:26,748][routes.py:88][INFO][7568] - {'api': '/user/register', 'email': 'test@nkust.edu.tw', 'error': 'already exist'}
+[2022-07-17 16:20:28,709][routes.py:88][INFO][25880] - {'api': '/user/register', 'email': 'test@nkust.edu.tw', 'error': 'already exist'}
+[2022-07-17 16:20:29,665][routes.py:88][INFO][21888] - {'api': '/user/register', 'email': 'test@nkust.edu.tw', 'error': 'already exist'}
+[2022-07-17 16:20:30,477][routes.py:88][INFO][24052] - {'api': '/user/register', 'email': 'test@nkust.edu.tw', 'error': 'already exist'}
+[2022-07-17 16:24:16,899][routes.py:106][WARNING][27608] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 16:24:17,014][routes.py:112][INFO][27608] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 16:24:46,187][routes.py:89][INFO][10048] - {'api': '/user/register', 'email': 'test@nkust.edu.tw', 'error': 'already exist'}
+[2022-07-17 16:24:47,665][routes.py:89][INFO][25068] - {'api': '/user/register', 'email': 'test@nkust.edu.tw', 'error': 'already exist'}
+[2022-07-17 16:25:25,325][routes.py:35][INFO][1260] - {'api': '/user/login', 'validate': True, 'token': '_oLGlUboE2MBa-N6-idmZVx-3q8MCFJQesXhyQ7KyqY'}
+[2022-07-17 16:26:13,673][routes.py:35][INFO][5788] - {'api': '/user/login', 'validate': True, 'token': 'YZ9jB0sHkV1SCsnvVbMBjhmqjfuNwh93Vzp_69aPNVk'}
+[2022-07-17 16:28:57,959][routes.py:37][INFO][18576] - {'api': '/user/login', 'validate': True, 'token': 'RkfA2WDYpDFDw5F2kdYPU8irsl8OqjUcROtzr7NeaQg'}
+[2022-07-17 16:29:20,198][routes.py:38][INFO][4016] - {'api': '/user/login', 'validate': True, 'token': 'JKphA-C8lqQuOoSmUVF6_oKklbmVmm0pMpxAeoJSue8'}
+[2022-07-17 16:31:05,898][routes.py:38][INFO][268] - {'api': '/user/login', 'validate': True, 'token': 'UU39R00v9810yTKfp0asELOtGnwDPOH116novC9uZQE'}
+[2022-07-17 16:32:44,088][routes.py:38][INFO][22480] - {'api': '/user/login', 'validate': True, 'token': 'MD-8LFp8qYbP9X4Nvu-gYLb5lgE96ryxIEvrDz43ACg'}
+[2022-07-17 16:32:49,594][routes.py:38][INFO][15840] - {'api': '/user/login', 'validate': True, 'token': 'Z83rONSIOW9tD9q9_xv8kfPTX_VsOkeJEYeWkvcGJwM'}
+[2022-07-17 16:32:52,120][routes.py:38][INFO][19792] - {'api': '/user/login', 'validate': True, 'token': 'DsEdELv8KGhvxBaMUQSggORkzECLpPe35mvWhusoZMw'}
+[2022-07-17 16:36:22,155][routes.py:33][INFO][6840] - {'api': '/user/login', 'validate': True}
+[2022-07-17 16:36:24,081][routes.py:33][INFO][25148] - {'api': '/user/login', 'validate': True}
+[2022-07-17 16:36:28,990][routes.py:33][INFO][25220] - {'api': '/user/login', 'validate': True}
+[2022-07-17 16:36:29,856][routes.py:33][INFO][14668] - {'api': '/user/login', 'validate': True}
+[2022-07-17 16:36:55,363][routes.py:36][INFO][1884] - {'api': '/user/login', 'validate': False}
+[2022-07-17 16:36:59,861][routes.py:33][INFO][25508] - {'api': '/user/login', 'validate': True}
+[2022-07-17 16:42:08,913][routes.py:55][INFO][27232] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 16:42:48,369][routes.py:56][INFO][13924] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 16:42:52,809][routes.py:56][INFO][24204] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 16:42:54,201][routes.py:56][INFO][7468] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 16:42:55,196][routes.py:56][INFO][15404] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 16:44:25,176][routes.py:17][INFO][25316] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-17T08:44:25.175914+08:00'}, 'api': '/airsign/status'}
+[2022-07-17 16:44:26,172][routes.py:17][INFO][7904] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-17T08:44:26.172656+08:00'}, 'api': '/airsign/status'}
+[2022-07-17 16:44:27,760][routes.py:17][INFO][26936] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-17T08:44:27.760401+08:00'}, 'api': '/airsign/status'}
+[2022-07-17 16:49:29,473][routes.py:35][INFO][13676] - {'api': '/airsign/2fa', 'validate': True, 'token': '9E3EgRuJtLO23vl9mmOE26Ujfsubs9CBINsoL2GGbvU'}
+[2022-07-17 16:49:30,084][routes.py:35][INFO][24888] - {'api': '/airsign/2fa', 'validate': True, 'token': 'j8DAQqOMwcfyMNQFG-js1U7ckGVovqQ95oZPevwcJ7U'}
+[2022-07-17 16:54:06,810][routes.py:53][INFO][9912] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 16:54:06,847][routes.py:53][INFO][11316] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:01:09,470][routes.py:53][INFO][26936] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:01:09,506][routes.py:53][INFO][23236] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:03:15,904][routes.py:53][INFO][21956] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:03:46,421][routes.py:54][INFO][24872] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:04:30,787][routes.py:55][INFO][26760] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:04:40,334][routes.py:55][INFO][4236] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:05:24,167][routes.py:55][INFO][26676] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:05:27,218][routes.py:55][INFO][24796] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:07:11,839][routes.py:53][INFO][23348] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:07:23,774][routes.py:53][INFO][24064] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:11:13,524][routes.py:53][INFO][11268] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:11:15,255][routes.py:53][INFO][27084] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:11:20,909][routes.py:35][INFO][26480] - {'api': '/airsign/2fa', 'validate': True, 'token': 'tZoYrgkRIBDf_2OZrtTGWgMHUmy_JWpdCe5-pPECqfc'}
+[2022-07-17 17:13:50,428][routes.py:35][INFO][24136] - {'api': '/airsign/2fa', 'validate': True, 'token': 'qLkbuYCi-FS4LZDn_vZdl-9vN9L4oYlzKIpnm7uzBqQ'}
+[2022-07-17 17:14:22,140][routes.py:35][INFO][7828] - {'api': '/airsign/2fa', 'validate': True, 'token': 'jQoU0pLp8a7F4jHSciEcEgxq2D8jJ3gWnL7v0qK2EvU'}
+[2022-07-17 17:14:28,529][routes.py:35][INFO][24952] - {'api': '/airsign/2fa', 'validate': True, 'token': 'sj2b3yWKGv_9wRBDUy-i0wypzYNwvj28Jjq1Tt3KLZo'}
+[2022-07-17 17:14:34,497][routes.py:53][INFO][26504] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:20:24,629][routes.py:36][INFO][22964] - {'api': '/airsign/2fa', 'validate': True, 'token': '6pLWrkRB89FWLThG_ZPW6PH9-3gbQetWc2xIP8h1H1k'}
+[2022-07-17 17:23:21,109][routes.py:109][WARNING][26800] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 17:23:21,223][routes.py:115][INFO][26800] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 17:23:56,712][routes.py:35][INFO][27612] - {'api': '/user/login', 'validate': True}
+[2022-07-17 17:24:01,150][routes.py:35][INFO][7912] - {'api': '/user/login', 'validate': True}
+[2022-07-17 17:26:28,673][routes.py:97][ERROR][11212] - {'api': '/user/register', 'email': 'test@nkust.edu.tw', 'data': 'register sechmas not find last_login'}
+[2022-07-17 17:27:30,289][routes.py:109][WARNING][24192] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 17:27:30,402][routes.py:114][INFO][24192] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 17:28:23,416][routes.py:110][WARNING][19476] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 17:28:23,529][routes.py:115][INFO][19476] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 17:28:28,433][routes.py:35][INFO][10828] - {'api': '/user/login', 'validate': True}
+[2022-07-17 17:28:31,362][routes.py:35][INFO][1884] - {'api': '/user/login', 'validate': True}
+[2022-07-17 17:28:46,735][routes.py:35][INFO][24732] - {'api': '/user/login', 'validate': True}
+[2022-07-17 17:29:31,559][routes.py:36][INFO][2376] - {'api': '/airsign/2fa', 'validate': True}
+[2022-07-17 17:29:44,645][routes.py:59][INFO][20536] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:29:48,115][routes.py:59][INFO][13932] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 17:36:39,136][routes.py:35][INFO][20356] - {'api': '/user/login', 'validate': True}
+[2022-07-17 17:47:06,929][routes.py:36][INFO][13912] - {'api': '/user/login', 'validate': True, 'token': 'EPhUOj_icVHyDJ9_wlWr340jiJP9Y4AgSosOFMlGpvo'}
+[2022-07-17 17:47:13,339][routes.py:36][INFO][19556] - {'api': '/user/login', 'validate': True, 'token': 's5xoCvj6Cc5u1e63W-hphKaabiNiIgmL1-aH8T0TW5w'}
+[2022-07-17 17:47:48,549][routes.py:36][INFO][23576] - {'api': '/user/login', 'validate': True, 'token': 'JgdhTxNdksZN6aXMasvxOdQUW_sfapHmX1Y91Uyl0vE'}
+[2022-07-17 17:48:05,574][routes.py:36][INFO][23896] - {'api': '/user/login', 'validate': True, 'token': '4p7zJlD6NdydB_XYq5HR1DZ-UdmXSXkoEZVBh8WlEfc'}
+[2022-07-17 17:52:29,029][routes.py:42][INFO][25992] - {'api': '/airsign/2fa', 'validate': True, 'token': 'V4Gry9KC_ilJfUan9FwY4uPl5Uq76PXgzPSaSYuHKt4'}
+[2022-07-17 17:55:44,790][routes.py:40][INFO][22532] - {'api': '/airsign/2fa', 'validate': True, 'token': 'RsBARdWfqoRs94GbHal3yiTtCVL4ANM3SYJSyzuZQmc'}
+[2022-07-17 17:57:57,489][routes.py:40][INFO][24160] - {'api': '/airsign/2fa', 'validate': True, 'token': 'TLnuScR1jPM7k6ED8_w9JwFYoE3Tmc7n1YDpZGY-lzM'}
+[2022-07-17 17:59:38,070][routes.py:40][INFO][3640] - {'api': '/airsign/2fa', 'validate': True, 'token': 'foNszOFI4s_cUWmPCMgeGPTBLOAsiQ4-NkLECMVUGVc'}
+[2022-07-17 18:00:28,887][routes.py:40][INFO][26780] - {'api': '/airsign/2fa', 'validate': True, 'token': 'P6e-BMGlSyxIIEwAGyc3qKFT18KZLaNRTAc1leLUX74'}
+[2022-07-17 18:01:04,205][routes.py:40][INFO][7904] - {'api': '/airsign/2fa', 'validate': True, 'token': 'xr2W4xmmg3u9AfErI_psoBhckrOMdZUNBskn0EXzXNY'}
+[2022-07-17 18:03:31,751][routes.py:40][INFO][6992] - {'api': '/airsign/2fa', 'validate': True, 'token': 'An8NYrIVWTU3iBMvyq6rQSbFQyaVAak04vbEEkz4S-g'}
+[2022-07-17 18:04:11,883][routes.py:40][INFO][25312] - {'api': '/airsign/2fa', 'validate': True, 'token': 'uWggtq7hRehoj-EmcVW5-6ApNB0HZjHp9KbMBUL4cL0'}
+[2022-07-17 18:06:17,104][routes.py:40][INFO][2620] - {'api': '/airsign/2fa', 'validate': True, 'token': 'h4BgmAdtdH4PB2jpPL4IIqC63is-ghx-UPgC_yf4Mhs'}
+[2022-07-17 18:09:07,467][routes.py:40][INFO][13024] - {'api': '/airsign/2fa', 'validate': True, 'token': 'KOdzxyGjEAtOtQ_pmzK_wkCAq3jNcNdw0Et8exYLRFc'}
+[2022-07-17 18:09:27,131][routes.py:40][INFO][27388] - {'api': '/airsign/2fa', 'validate': True, 'token': 'NbVKwlAe_3WZjvBD362yp32BT0ukXp9kpM3NW61gO3k'}
+[2022-07-17 18:10:02,885][routes.py:40][INFO][24600] - {'api': '/airsign/2fa', 'validate': True, 'token': '3R9AMqPht8YgAzCOhdyc-C9wfG9damLfFB_AdxMRcME'}
+[2022-07-17 18:11:08,377][routes.py:40][INFO][13968] - {'api': '/airsign/2fa', 'validate': True, 'token': 'tK8tB11GMbgtYvMXUhxV0aPfWjDP8SLDsGmXnGH29yU'}
+[2022-07-17 18:13:07,748][routes.py:40][INFO][13972] - {'api': '/airsign/2fa', 'validate': True, 'token': 'j6SM_XfOgJOYLwgmB0lZtXdePSgxumcQvV8H9SGgvJ8'}
+[2022-07-17 18:19:40,403][routes.py:36][INFO][28212] - {'api': '/user/login', 'validate': True, 'token': 'LeEfwu2jp8ZyNfWon0il0HxGUyigW2L08NC-YsuIl5c'}
+[2022-07-17 18:19:53,162][routes.py:40][INFO][28516] - {'api': '/airsign/2fa', 'validate': True, 'token': 'tavQc2kllzWtUORNO2fr1yZ2FDnB0sBjyVDQsBhHPq8'}
+[2022-07-17 18:20:17,505][routes.py:40][INFO][21688] - {'api': '/airsign/2fa', 'validate': True, 'token': '-0b2Ljaj7F4zBCSdNk2U10RpCFey7dsBROK2P4nKeNE'}
+[2022-07-17 18:20:20,017][routes.py:40][INFO][28248] - {'api': '/airsign/2fa', 'validate': True, 'token': 'oXtBMDMrzO6qZ_UCZ_X3c2BbYWt-u0NNI27l0dnhiPU'}
+[2022-07-17 18:21:04,078][routes.py:121][WARNING][21672] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 18:21:04,191][routes.py:126][INFO][21672] - {'api': '/user/register', 'email': 'test@nkust.edu.tw'}
+[2022-07-17 18:21:29,030][routes.py:36][INFO][20960] - {'api': '/user/login', 'validate': True, 'token': 'fH0DzoO8MRApcDdgwVLY2SlvaMA-BzdmCXaBsv-4SRU'}
+[2022-07-17 18:21:41,307][routes.py:40][INFO][28224] - {'api': '/airsign/2fa', 'validate': True, 'token': 'Ae7bY54Kd3KU4MpSVX0nljJgwcr-_YlLeQ-Dn2o_ViQ'}
+[2022-07-17 18:22:32,407][routes.py:40][INFO][28492] - {'api': '/airsign/2fa', 'validate': True, 'token': 'iVWhQSeqZQPCUK4JdD9m5bC-kaHqTGmwcneRwy0Cw1E'}
+[2022-07-17 18:22:42,207][routes.py:70][INFO][27156] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 18:22:50,328][routes.py:70][INFO][28320] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 18:24:24,224][routes.py:68][INFO][14360] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 18:24:26,816][routes.py:68][INFO][20608] - {'account': 'test', 'api': '/user/info'}
+[2022-07-17 18:26:38,370][routes.py:41][INFO][25100] - {'api': '/airsign/2fa', 'validate': True, 'token': 'q8-utTYbqw2zjw2gz7g4pis1tZb1aDF7ON1Ucwy4fmY'}

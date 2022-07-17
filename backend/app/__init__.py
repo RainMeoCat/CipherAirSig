@@ -7,7 +7,6 @@ from flask_cors import CORS
 from app.commands import create_tables, del_user, delete_tables
 from app.extinsions import db, migrate
 from app.server import server
-from app.user import user
 
 
 def create_app():
@@ -25,11 +24,21 @@ def create_app():
     app.logger.addHandler(handler)
     handler.setFormatter(formatter)
 
+    from app.airsign import models
+    from app.user import models
+    from app.token import models
+    from app.gesturesign import models
     db.init_app(app)
     migrate.init_app(app, db)
-
+    from app.user import user
+    from app.airsign import airsign
+    from app.token import token
+    from app.gesturesign import gsign
     app.register_blueprint(user, url_prefix='/user')
+    app.register_blueprint(airsign, url_prefix='/airsign')
     app.register_blueprint(server, url_prefix='/server')
+    app.register_blueprint(token, url_prefix='/token')
+    app.register_blueprint(gsign, url_prefix='/gsign')
 
     app.cli.add_command(create_tables)
     app.cli.add_command(delete_tables)
