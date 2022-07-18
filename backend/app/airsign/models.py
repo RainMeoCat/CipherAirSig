@@ -10,7 +10,7 @@ from sqlalchemy.sql import func
 class Airsign(db.Model):
     __tablename__ = 'airsign'
     id = db.Column(db.Integer, primary_key=True,)
-    uid = db.Column(db.Integer, nullable=False)
+    account_id = db.Column(db.Integer, nullable=False)
     hash_0 = db.Column(db.BigInteger, nullable=False)
 
     user_register_time = db.Column(

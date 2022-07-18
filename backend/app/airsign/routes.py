@@ -22,7 +22,7 @@ def sign_status():
 
 
 @airsign.route('/2fa', methods=['POST'])
-def login():
+def mfa():
     request_body = request.get_json()
     print(request_body['token'], request_body['landmark'])
     db_token = Token.query.filter_by(
@@ -55,16 +55,11 @@ def login():
     return jsonify(sechmas), 200
 
 
-@airsign.route('/search', methods=['POST'])
-def search():
-    request_body = request.get_json()
-
-
 @airsign.route('/insert', methods=['POST'])
 def insert_sign():
     request_body = request.get_json()
     sechmas = {
-        "uid": request_body['uid'],
+        "account_id": request_body['uid'],
         "hash_0": request_body['hash_0'],
 
     }

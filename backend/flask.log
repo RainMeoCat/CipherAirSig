@@ -104,3 +104,6 @@
 [2022-07-17 18:24:24,224][routes.py:68][INFO][14360] - {'account': 'test', 'api': '/user/info'}
 [2022-07-17 18:24:26,816][routes.py:68][INFO][20608] - {'account': 'test', 'api': '/user/info'}
 [2022-07-17 18:26:38,370][routes.py:41][INFO][25100] - {'api': '/airsign/2fa', 'validate': True, 'token': 'q8-utTYbqw2zjw2gz7g4pis1tZb1aDF7ON1Ucwy4fmY'}
+[2022-07-18 01:36:28,430][check_service.py:46][ERROR][24328] - {'sql': DatabaseError(2005, "2005 (HY000): Unknown MySQL server host 'mysql+pymysql://italab:ma308@bas.shiya.site:3306/BAS' (11003)", 'HY000')}
+[2022-07-18 02:22:54,967][routes.py:26][INFO][21384] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-17T18:22:54.967744+08:00', 'data': [{'service': 'database', 'isAlive': True, 'description': '資料庫連線狀態'}]}, 'api': '/server/info'}
+[2022-07-18 02:23:21,765][routes.py:26][INFO][21328] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-17T18:23:21.765458+08:00', 'data': [{'service': 'database', 'isAlive': True, 'description': '資料庫連線狀態'}]}, 'api': '/server/info'}

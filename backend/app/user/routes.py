@@ -22,8 +22,6 @@ def login():
         return jsonify(status="user not found"), 404
     if len(request.json.get('password')) != 64:
         return jsonify(status="password not hash"), 403
-    if user.password == "":
-        return jsonify(status="please reset your password"), 403
 
     validate = cryptor.check_password_hash(
         user.password, request.json.get('password'))
@@ -50,14 +48,14 @@ def login():
         return jsonify(status="password error"), 403
 
 
-@user.route('/status', methods=["GET", "POST"])
-def status():
+@user.route('/echo', methods=["GET", "POST"])
+def echo():
     request_body = request.get_json()
     print(request_body)
     return jsonify(request_body), 200
 
 
-@user.route("/info", methods=["GET", "POST"])
+@user.route("/info", methods=["POST"])
 def user_info():
     request_body = request.get_json()
     db_token = Token.query.filter_by(

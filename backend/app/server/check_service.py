@@ -24,8 +24,8 @@ def check_database():
     try:
         # 連接 MySQL/MariaDB 資料庫
         connection = mysql.connector.connect(
-            host='140.133.74.170',          # 主機名稱
-            database='bas',  # 資料庫名稱
+            host="18.163.181.178",          # 主機名稱
+            database='BAS',  # 資料庫名稱
             user='italab',        # 帳號
             password='ma308')  # 密碼
 
