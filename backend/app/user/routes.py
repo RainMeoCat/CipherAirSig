@@ -69,7 +69,7 @@ def user_info():
         sechmas = {
             "account": user.account,
             "email": user.email,
-            "nickname": user.nickname,
+            "user_name": user.user_name,
             "last_login": user.last_login,
             "register_time": user.register_time,
         }
