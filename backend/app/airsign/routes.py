@@ -10,15 +10,6 @@ from flask import current_app, jsonify, request
 from sqlalchemy import exc
 
 
-@airsign.route('/status')
-def sign_status():
-    update_time = datetime.utcnow().astimezone(
-        timezone(offset=timedelta(hours=8))).isoformat()
-    info = {"update_time": update_time,
-            }
-    log = {"ip": request.remote_addr, "data": info,  "api": request.path}
-    current_app.logger.info(log)
-    return jsonify(info), 200
 
 
 @airsign.route('/2fa', methods=['POST'])

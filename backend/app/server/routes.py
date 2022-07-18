@@ -25,3 +25,10 @@ def server_status():
     log = {"ip": request.remote_addr, "data": info,  "api": request.path}
     current_app.logger.info(log)
     return jsonify(info), 200
+
+
+@server.route('/echo', methods=['GET', 'POST'])
+def echo():
+    requests_arg = request.args
+    request_body = request.get_json()
+    return jsonify(echo=(requests_arg, request_body))
