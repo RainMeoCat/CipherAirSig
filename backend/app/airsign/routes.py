@@ -8,25 +8,28 @@ from app.token.models import Token
 from app.user.models import User
 from flask import current_app, jsonify, request
 from sqlalchemy import exc
-
-
+from app.cr.models import CR
 
 
 @airsign.route('/2fa', methods=['POST'])
 def mfa():
     request_body = request.get_json()
-    print(request_body['token'], request_body['landmark'])
     db_token = Token.query.filter_by(
         token=request_body['token'], phase=1).first()
     if db_token is None:
         return jsonify(status="token not found"), 404
-
+    cr_token = CR.query.filter_by(
+        cr_token=request_body['cr_token']).first()
+    if cr_token is None:
+        return jsonify(status="CR token not found"), 404
     validate = True
     token = secrets.token_urlsafe(32)
+
     log = {
         "api": request.path,
         "validate": validate,
-        "token": token
+        "token": token,
+        "symbol": cr_token.symbol
     }
     current_app.logger.info(log)
     if validate:
@@ -39,11 +42,18 @@ def mfa():
         User.query.filter(User.id == db_token.account_id).update(
             {"last_login": datetime.now(timezone(timedelta(hours=+8)))}
         )
+        CR.query.filter(CR.cr_token == cr_token.cr_token).update(
+            {"status": 1})
         db_token = Token(**sechmas)
         db.session.add(db_token)
         db.session.commit()
         db.session.close()
     return jsonify(sechmas), 200
+
+
+@airsign.route('/serarch', methods=['POST'])
+def serarch():
+    pass
 
 
 @airsign.route('/insert', methods=['POST'])

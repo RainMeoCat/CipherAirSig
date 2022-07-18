@@ -107,3 +107,29 @@
 [2022-07-18 01:36:28,430][check_service.py:46][ERROR][24328] - {'sql': DatabaseError(2005, "2005 (HY000): Unknown MySQL server host 'mysql+pymysql://italab:ma308@bas.shiya.site:3306/BAS' (11003)", 'HY000')}
 [2022-07-18 02:22:54,967][routes.py:26][INFO][21384] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-17T18:22:54.967744+08:00', 'data': [{'service': 'database', 'isAlive': True, 'description': '資料庫連線狀態'}]}, 'api': '/server/info'}
 [2022-07-18 02:23:21,765][routes.py:26][INFO][21328] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-17T18:23:21.765458+08:00', 'data': [{'service': 'database', 'isAlive': True, 'description': '資料庫連線狀態'}]}, 'api': '/server/info'}
+[2022-07-18 17:23:14,767][routes.py:26][INFO][11132] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-18T09:23:14.766378+08:00', 'data': [{'service': 'database', 'isAlive': True, 'description': '資料庫連線狀態'}]}, 'api': '/api/server/info'}
+[2022-07-18 17:24:11,704][routes.py:34][INFO][8972] - {'api': '/api/user/login', 'validate': True, 'token': '-ZIROgpYDpE7gUgrtPHQ_ihX6Hqh9ADMVp6xy0tP3Sg'}
+[2022-07-18 17:33:43,432][routes.py:26][INFO][28852] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-18T09:33:43.432728+08:00', 'data': [{'service': 'database', 'isAlive': True, 'description': '資料庫連線狀態'}]}, 'api': '/api/server/info'}
+[2022-07-18 17:41:09,617][routes.py:26][INFO][27196] - {'ip': '127.0.0.1', 'data': {'update_time': '2022-07-18T09:41:09.617895+08:00', 'data': [{'service': 'database', 'isAlive': True, 'description': '資料庫連線狀態'}]}, 'api': '/api/server/info'}
+[2022-07-18 17:41:33,549][routes.py:66][INFO][21604] - {'account': 'test', 'api': '/api/user/info'}
+[2022-07-18 17:41:34,943][routes.py:66][INFO][12256] - {'account': 'test', 'api': '/api/user/info'}
+[2022-07-18 17:41:36,210][routes.py:66][INFO][15440] - {'account': 'test', 'api': '/api/user/info'}
+[2022-07-18 17:41:37,325][routes.py:66][INFO][30360] - {'account': 'test', 'api': '/api/user/info'}
+[2022-07-18 23:12:04,826][routes.py:117][WARNING][7148] - {'api': '/api/user/register', 'email': 'h22447h@nkust.edu.tw'}
+[2022-07-18 23:12:04,945][routes.py:122][INFO][7148] - {'api': '/api/user/register', 'email': 'h22447h@nkust.edu.tw'}
+[2022-07-19 00:34:55,235][routes.py:66][INFO][27168] - {'account': 'test', 'api': '/api/user/info'}
+[2022-07-19 00:35:08,086][routes.py:34][INFO][21136] - {'api': '/api/user/login', 'validate': True, 'token': 'WKrePu6KF0vhQ3IIWGKn9dR50w6wJxzhUqemIF5r0RU'}
+[2022-07-19 00:43:31,597][routes.py:45][WARNING][11940] - {'api': '/api/cr/symbol', 'sql': DataError('(pymysql.err.DataError) (1366, "Incorrect integer value: \'ant\' for column `BAS`.`cr`.`symbol_code` at row 1")')}
+[2022-07-19 00:47:32,462][routes.py:41][INFO][14128] - {'account_id': 6, 'symbol': 'ant', 'symbol_code': 0, 'create_time': datetime.datetime(2022, 7, 19, 0, 47, 32, 349625, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800)))}
+[2022-07-19 00:47:50,544][routes.py:41][INFO][29488] - {'account_id': 6, 'symbol': 'sun', 'symbol_code': 1, 'create_time': datetime.datetime(2022, 7, 19, 0, 47, 50, 435032, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800)))}
+[2022-07-19 00:47:52,301][routes.py:41][INFO][18808] - {'account_id': 6, 'symbol': '&', 'symbol_code': 6, 'create_time': datetime.datetime(2022, 7, 19, 0, 47, 52, 191653, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800)))}
+[2022-07-19 00:47:53,133][routes.py:41][INFO][30068] - {'account_id': 6, 'symbol': '&', 'symbol_code': 6, 'create_time': datetime.datetime(2022, 7, 19, 0, 47, 53, 21743, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800)))}
+[2022-07-19 00:47:53,815][routes.py:41][INFO][29344] - {'account_id': 6, 'symbol': 'ham', 'symbol_code': 2, 'create_time': datetime.datetime(2022, 7, 19, 0, 47, 53, 704068, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800)))}
+[2022-07-19 00:47:54,657][routes.py:41][INFO][23640] - {'account_id': 6, 'symbol': 'fly', 'symbol_code': 4, 'create_time': datetime.datetime(2022, 7, 19, 0, 47, 54, 547048, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800)))}
+[2022-07-19 00:57:38,711][routes.py:46][WARNING][14244] - {'api': '/api/cr/symbol', 'sql': IntegrityError('(pymysql.err.IntegrityError) (1048, "Column \'status\' cannot be null")')}
+[2022-07-19 00:58:11,292][routes.py:41][INFO][26336] - {'account_id': 6, 'symbol': 'ham', 'symbol_code': 2, 'create_time': datetime.datetime(2022, 7, 19, 0, 58, 11, 178530, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))), 'status': 0}
+[2022-07-19 00:58:13,743][routes.py:41][INFO][28132] - {'account_id': 6, 'symbol': 'Custom', 'symbol_code': 10, 'create_time': datetime.datetime(2022, 7, 19, 0, 58, 13, 629400, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))), 'status': 0}
+[2022-07-19 00:59:46,605][routes.py:31][INFO][14976] - {'api': '/api/airsign/2fa', 'validate': True, 'token': '9EjBeJN2aSxUhMfpGOabBV1mgwS1zYBLWL16AOzcD_A', 'symbol': 'ham'}
+[2022-07-19 01:01:00,842][routes.py:31][INFO][25308] - {'api': '/api/airsign/2fa', 'validate': True, 'token': 'SvYOB5QZh98OlrKoeUzaQJFHFjLsnOWgwWJFdZvkVzY', 'symbol': 'ham'}
+[2022-07-19 01:04:32,689][routes.py:43][INFO][18496] - {'account_id': 6, 'cr_token': 'flZFjlso9RhQZaHjWSpPI4ESBwM2gB-PabMHopcbgfg', 'symbol': 'ham', 'symbol_code': 2, 'create_time': datetime.datetime(2022, 7, 19, 1, 4, 32, 575916, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))), 'status': 0}
+[2022-07-19 01:09:18,185][routes.py:34][INFO][21180] - {'api': '/api/airsign/2fa', 'validate': True, 'token': '7qzYqG0620uVNLbHPLG-dceOjS6ZnafrwxIqDCkx_VA', 'symbol': 'ham'}

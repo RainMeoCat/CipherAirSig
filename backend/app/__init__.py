@@ -28,17 +28,20 @@ def create_app():
     from app.user import models
     from app.token import models
     from app.gesturesign import models
+    from app.cr import models
     db.init_app(app)
     migrate.init_app(app, db)
     from app.user import user
     from app.airsign import airsign
     from app.token import token
     from app.gesturesign import gsign
+    from app.cr import cr
     app.register_blueprint(user, url_prefix='/api/user')
     app.register_blueprint(airsign, url_prefix='/api/airsign')
     app.register_blueprint(server, url_prefix='/api/server')
     app.register_blueprint(token, url_prefix='/api/token')
     app.register_blueprint(gsign, url_prefix='/api/gsign')
+    app.register_blueprint(cr, url_prefix='/api/cr')
 
     app.cli.add_command(create_tables)
     app.cli.add_command(delete_tables)
