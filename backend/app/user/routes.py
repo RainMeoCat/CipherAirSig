@@ -82,10 +82,13 @@ def user_info():
 def register():
     request_body = request.get_json()
     sechmas = {
-        "account": "",
-        "nickname": "",
+        "uuid": request_body["uuid"],
+        "account": request_body['email'],
+        "user_name": request_body['user_name'],
         "password": "",
-        "email": "",
+        "email": request_body['email'],
+        "age": request_body['age'],
+        "gender": request_body['gender']
     }
     log = {
         "api": request.path,
@@ -103,9 +106,6 @@ def register():
             current_app.logger.error(log)
             return jsonify(status=log['data']), 400
         sechmas[key] = request_body.get(key)
-
-    if len(sechmas["nickname"]) > 50:
-        return jsonify(status="user_nickname format error"), 400
 
     password = cryptor.generate_password_hash(
         password=request_body['password'], rounds=config.BCRYPT_LOG_ROUNDS)

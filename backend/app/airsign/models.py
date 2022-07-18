@@ -13,5 +13,5 @@ class Airsign(db.Model):
     account_id = db.Column(db.Integer, nullable=False)
     hash_0 = db.Column(db.BigInteger, nullable=False)
     symbol_code = db.Column(db.Integer, nullable=False)
-    user_register_time = db.Column(
+    create_time = db.Column(
         db.DateTime, default=func.now(),  nullable=False)

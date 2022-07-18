@@ -14,10 +14,6 @@ from app.cr.models import CR
 @airsign.route('/2fa', methods=['POST'])
 def mfa():
     request_body = request.get_json()
-    db_token = Token.query.filter_by(
-        token=request_body['token'], phase=1).first()
-    if db_token is None:
-        return jsonify(status="token not found"), 404
     cr_token = CR.query.filter_by(
         cr_token=request_body['cr_token']).first()
     if cr_token is None:
@@ -33,13 +29,13 @@ def mfa():
     }
     current_app.logger.info(log)
     if validate:
-        user = User.query.filter(User.id == db_token.account_id).first()
+        user = User.query.filter(User.id == cr_token.account_id).first()
         sechmas = {
             "account_id": user.id,
             "token": token,
             "phase": 2
         }
-        User.query.filter(User.id == db_token.account_id).update(
+        User.query.filter(User.id == cr_token.account_id).update(
             {"last_login": datetime.now(timezone(timedelta(hours=+8)))}
         )
         CR.query.filter(CR.cr_token == cr_token.cr_token).update(
@@ -62,7 +58,8 @@ def insert_sign():
     sechmas = {
         "account_id": request_body['uid'],
         "hash_0": request_body['hash_0'],
-
+        "symbol_code": request_body['symbol_code'],
+        "create_time": datetime.now(timezone(timedelta(hours=+8)))
     }
     log = {
         "api": request.path,
