@@ -1,3 +1,4 @@
+import imp
 import secrets
 from datetime import datetime, timedelta, timezone
 
@@ -9,23 +10,51 @@ from app.user.models import User
 from flask import current_app, jsonify, request
 from sqlalchemy import exc
 from app.cr.models import CR
+import tensorflow as tf
+import json
+from sqlalchemy import text
+from app.airsign.predict import airsign_predict
+with tf.device('/cpu:0'):
+    model_path = "./app/airsign/20220719_170457_f1_d3_vgg16_finetune_degree_range_30.h5"
+    model = tf.keras.models.load_model(
+        model_path)
 
 
 @airsign.route('/2fa', methods=['POST'])
 def mfa():
+    validate = False
     request_body = request.get_json()
+    landmark = request_body["landmark"]
     cr_token = CR.query.filter_by(
         cr_token=request_body['cr_token']).first()
     if cr_token is None:
         return jsonify(status="CR token not found"), 404
-    validate = True
+    hash_0 = airsign_predict(landmark)
+    print(hash_0)
+    tolerance = 15
+    account_id = cr_token.account_id
+    raw_sql = text(f'''
+    SELECT account_id,xor_hash_0,symbol_code
+    FROM(
+    SELECT id,account_id, BIT_COUNT(hash_0^{hash_0}) AS 'xor_hash_0',symbol_code
+    FROM airsign
+    ) AS R1
+    WHERE xor_hash_0<{tolerance} AND account_id={account_id}
+    ORDER BY xor_hash_0
+    limit 1
+    ''')
+    res = db.engine.execute(raw_sql)
+    sign_hash = [row[0] for row in res]
+    if len(sign_hash) > 0:
+        validate = True
     token = secrets.token_urlsafe(32)
 
     log = {
         "api": request.path,
         "validate": validate,
         "token": token,
-        "symbol": cr_token.symbol
+        "symbol": cr_token.symbol,
+        "raw_sql": raw_sql
     }
     current_app.logger.info(log)
     if validate:
@@ -44,12 +73,34 @@ def mfa():
         db.session.add(db_token)
         db.session.commit()
         db.session.close()
-    return jsonify(sechmas), 200
+        return jsonify(sechmas), 200
+    return jsonify(status="forbidden"), 403
 
 
-@airsign.route('/serarch', methods=['POST'])
+@airsign.route('/search', methods=['POST'])
 def serarch():
-    pass
+    request_body = request.get_json()
+    hash_0 = request_body['hash_0']
+    account_id = request_body['account_id']
+    print(hash_0)
+    tolerance = 2
+    # with open("./app/airsign/hash_example.json", "r") as f:
+    #     landmark = json.loads(f.read())
+    raw_sql = text(f'''
+    SELECT account_id,xor_hash_0,symbol_code
+    FROM(
+    SELECT id,account_id, BIT_COUNT(hash_0^{hash_0}) AS 'xor_hash_0',symbol_code
+    FROM airsign
+    ) AS R1
+    WHERE xor_hash_0<{tolerance} AND account_id={account_id}
+    ORDER BY xor_hash_0
+    limit 1
+    ''')
+    res = db.engine.execute(raw_sql)
+    sign_hash = [row[0] for row in res]
+    if len(sign_hash) > 0:
+        return jsonify(status="airsign_pass"), 200
+    return jsonify(status="forbidden"), 403
 
 
 @airsign.route('/insert', methods=['POST'])
