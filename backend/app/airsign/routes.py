@@ -56,14 +56,14 @@ def serarch():
 def insert_sign():
     request_body = request.get_json()
     sechmas = {
-        "account_id": request_body['uid'],
+        "account_id": request_body['account_id'],
         "hash_0": request_body['hash_0'],
         "symbol_code": request_body['symbol_code'],
         "create_time": datetime.now(timezone(timedelta(hours=+8)))
     }
     log = {
         "api": request.path,
-        "user_email": request_body['uid']
+        "symbol_code": request_body['symbol_code']
     }
     airsign = Airsign(**sechmas)
     current_app.logger.warning(log)
