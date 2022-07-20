@@ -286,7 +286,7 @@ export default {
     // 監聽靜止狀態，對於靜止狀態的改變，由holdChange接收資料變化
     watch(ifHold, holdChange)
     function holdChange (newValue, oldValue) {
-      if (newValue === '靜止中') {
+      if (newValue === '靜止中' && store.state.handLandmarkPosition.length > 50) {
         holdSecond.value = Date.now()
       } else {
         holdSecond.value = 0
@@ -316,7 +316,7 @@ export default {
     // 每100毫秒檢測一下holdSecond的秒數，超過1.5秒就可以加上3秒的靜止動畫
     function checkHold () {
       // if
-      if (holdSecond.value && Date.now() - holdSecond.value - 1500 > 1500) {
+      if (holdSecond.value && Date.now() - holdSecond.value - 1500 > 1500 && store.state.handLandmarkPosition.length > 50) {
         signState.value = '簽名送出'
         if (store.state.sentLock === true) {
           ElNotification({
