@@ -63,10 +63,9 @@ def graph_check(sign, template_list, dist):
         if(d<float(dist)):
             check_count = check_count+1
         # print('簽名' + str(i + 1) + ' vs 簽名' + str(j + 1) + ': '+str(d))
-    return check_count
+    return check_count >= 4
 
 def sign_validate(sign, id):
-    template = [[],[],[],[],[]]
     file_path = './app/gesturesign/DB/' +str(id) + '/template/' 
     template_list = [None] * 5
     files = [f for f in os.listdir(file_path) if os.path.isfile(file_path+f)]
@@ -76,6 +75,7 @@ def sign_validate(sign, id):
     for i in range(len(template_list)):
         with open(file_path + file_list[i]) as json_file:
             template_list[i] = json.load(json_file)
+            
     with open('./app/gesturesign/DB/' +str(id) + '/template/dist.txt') as dist_file:
         sign_info = dist_file.read().splitlines()
     if(not pinch_check(sign, list(template_list))):

@@ -29,8 +29,9 @@ def mfa():
             target_id = index
     login_sign = signProcess.convert(request_body['landmark'],target_id)
     validate = sign_validate.sign_validate(login_sign, target_id)
+    print(email)
     print(validate)
-
+    print(target_id)
     log = {
         "api": request.path,
         "validate": validate,
