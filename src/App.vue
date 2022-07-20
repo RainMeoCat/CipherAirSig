@@ -1,15 +1,85 @@
 <template>
-  <div class="app">
+  <div
+    class="app"
+    :class="$store.getters.returnModeColor"
+  >
+    <transition
+      name="el-fade-in"
+      appear
+    >
+      <div
+        :key="$store.state.signMode"
+        class="mode"
+      >
+        {{ $store.state.signMode }}
+      </div>
+    </transition>
+    <div class="nav">
+      <h1>
+        <el-link
+          class="nav-a"
+          :underline="false"
+          style="font-size:24px;"
+          @click="returnHome()"
+        >
+          ITALAB 2022 thesis demo
+        </el-link>
+      </h1>
+      <el-link
+        class="nav-a"
+        :underline="false"
+        @click="enterMode('gesture')"
+      >
+        gesture
+      </el-link>  /  <el-link
+        class="nav-a"
+        :underline="false"
+        @click="enterMode('hash')"
+      >
+        hash
+      </el-link>
+    </div>
     <ul class="circles">
       <li
         v-for="n in 10"
         :key="n"
       />
     </ul>
-    <router-view />
+    <router-view v-slot="{ Component, route }">
+      <transition name="fade">
+        <component
+          :is="Component"
+          :key="route.path"
+        />
+      </transition>
+    </router-view>
   </div>
 </template>
-
+<script>
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+export default {
+  name: 'App',
+  setup () {
+    const router = useRouter()
+    const store = useStore()
+    function returnHome () {
+      store.commit('resetSign')
+      store.commit('changeMode', '')
+      router.push('/')
+    }
+    function enterMode (mode) {
+      store.commit('resetSign')
+      store.commit('changeMode', mode)
+      router.push('/login')
+    }
+    return {
+      enterMode,
+      returnHome
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 @import "./assets/font.css";
 .circles{
@@ -64,25 +134,63 @@ $circles-duration: (25s,12s,25s,18s,25s,25s,25s,25s,45s,35s);
 }
 .app {
   font-family: "Gen Jyuu Gothic";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background: linear-gradient(#7361E4, #F8ADFE);height: 100vh;width: 100vw;
   color: #2c3e50;
+  background: linear-gradient(180deg, #e1803f, #fef2ad, #7361E4, #F8ADFE, #3ab25a, #adfed1);
+  background-size:500% 500%;
+  height: 100vh;
+  width: 100vw;
+  background-position: 0% 0%;
+  transition: all 1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.gesture {
+  background-position: 0% 50%;
+  transition: all 1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.hash {
+  background-position: 0% 100%;
+  transition: all 1s cubic-bezier(0.33, 1, 0.68, 1);
 }
 body{
   margin:0px;
 }
-nav {
-  padding: 30px;
-
-  a {
+.mode{
+  position:absolute;
+  top:10px;
+  right:10px;
+  color:rgba(255,255,255,0.5);
+  font-weight: bold;
+  font-size:24px
+}
+.nav {
+  text-align:left;
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  color: rgba(255,255,255,0.5);
+  font-weight: bold;
+  z-index: 999;
+  h1{
+    margin:0px;
+    font-size:24px;
+  }
+  .nav-a {
+    color: rgba(255,255,255,0.5);
     font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    &:hover {
+      color: rgba(0, 242, 255, 0.35);
     }
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+  position: absolute;
+  width: 100%;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
