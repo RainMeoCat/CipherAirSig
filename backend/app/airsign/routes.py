@@ -1,23 +1,17 @@
 import imp
+import json
 import secrets
 from datetime import datetime, timedelta, timezone
 
 from app.airsign import airsign
 from app.airsign.models import Airsign
+from app.airsign.predict import airsign_predict
+from app.cr.models import CR
 from app.extinsions import cryptor, db
 from app.token.models import Token
 from app.user.models import User
 from flask import current_app, jsonify, request
-from sqlalchemy import exc
-from app.cr.models import CR
-import tensorflow as tf
-import json
-from sqlalchemy import text
-from app.airsign.predict import airsign_predict
-# with tf.device('/cpu:0'):
-#     model_path = "./app/airsign/20220719_170457_f1_d3_vgg16_finetune_degree_range_30.h5"
-#     model = tf.keras.models.load_model(
-#         model_path)
+from sqlalchemy import exc, text
 
 
 @airsign.route('/2fa', methods=['POST'])
