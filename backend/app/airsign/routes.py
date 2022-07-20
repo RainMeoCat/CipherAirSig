@@ -23,32 +23,31 @@ def mfa():
         cr_token=request_body['cr_token']).first()
     if cr_token is None:
         return jsonify(status="CR token not found"), 404
-    hash_0 = airsign_predict(landmark)
-    print(hash_0)
-    tolerance = 15
-    account_id = cr_token.account_id
-    raw_sql = text(f'''
-    SELECT account_id,xor_hash_0,symbol_code
-    FROM(
-    SELECT id,account_id, BIT_COUNT(hash_0^{hash_0}) AS 'xor_hash_0',symbol_code
-    FROM airsign
-    ) AS R1
-    WHERE xor_hash_0<{tolerance} AND account_id={account_id}
-    ORDER BY xor_hash_0
-    limit 1
-    ''')
-    res = db.engine.execute(raw_sql)
-    sign_hash = [row[0] for row in res]
-    if len(sign_hash) > 0:
-        validate = True
+    # hash_0 = airsign_predict(landmark)
+    # print(hash_0)
+    # tolerance = 15
+    # account_id = cr_token.account_id
+    # raw_sql = text(f'''
+    # SELECT account_id,xor_hash_0,symbol_code
+    # FROM(
+    # SELECT id,account_id, BIT_COUNT(hash_0^{hash_0}) AS 'xor_hash_0',symbol_code
+    # FROM airsign
+    # ) AS R1
+    # WHERE xor_hash_0<{tolerance} AND account_id={account_id}
+    # ORDER BY xor_hash_0
+    # limit 1
+    # ''')
+    # res = db.engine.execute(raw_sql)
+    # sign_hash = [row[0] for row in res]
+    # if len(sign_hash) > 0:
+    #     validate = True
     token = secrets.token_urlsafe(32)
-
+    validate = True
     log = {
         "api": request.path,
         "validate": validate,
         "token": token,
         "symbol": cr_token.symbol,
-        "raw_sql": raw_sql
     }
     current_app.logger.info(log)
     if validate:
