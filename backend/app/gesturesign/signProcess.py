@@ -7,10 +7,10 @@ import numpy as np
 import scipy.interpolate as interpolate
 # from natsort import natsorted
 #設定執行參數
-parser=argparse.ArgumentParser()
-parser.add_argument('--id', help='轉換id,輸入all就會全部一起轉換')
-parser.add_argument('--action', help='是否進入修復程序')
-args=parser.parse_args()
+# parser=argparse.ArgumentParser()
+# parser.add_argument('--id', help='轉換id,輸入all就會全部一起轉換')
+# parser.add_argument('--action', help='是否進入修復程序')
+# args=parser.parse_args()
 
 
 # threshold
