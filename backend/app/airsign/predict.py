@@ -4,15 +4,12 @@ import numpy as np
 from scipy.interpolate import interp1d
 from keras.models import Sequential, Model
 
-with open("./app/airsign/hash_example.json", "r") as f:
-    landmark = json.loads(f.read())
-
-with tf.device('/cpu:0'):
-    model_path = "./app/airsign/20220719_170457_f1_d3_vgg16_finetune_degree_range_30.h5"
-    model = tf.keras.models.load_model(
-        model_path)
-    sub_model = Model(inputs=model.input,
-                      outputs=model.get_layer('latent').output)
+# with tf.device('/cpu:0'):
+#     model_path = "./app/airsign/20220719_170457_f1_d3_vgg16_finetune_degree_range_30.h5"
+#     model = tf.keras.models.load_model(
+#         model_path)
+#     sub_model = Model(inputs=model.input,
+#                       outputs=model.get_layer('latent').output)
 
 
 def linear_interpolate(scale_sample: int, origin_point: list):
