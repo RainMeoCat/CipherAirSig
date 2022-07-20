@@ -14,6 +14,7 @@ export default createStore({
     strokeIndicator: 0,
     signMode: '',
     loginToken: '',
+    crToken: '',
     twoFAToken: '',
     sentLock: true,
     userInfo: {
@@ -23,7 +24,8 @@ export default createStore({
       register_time: '',
       user_name: '',
       avatar: ''
-    }
+    },
+    crSymbol: ''
   },
   getters: {
     returnModeColor (state) {
@@ -80,6 +82,12 @@ export default createStore({
     },
     setUserInfo (state, info) {
       state.userInfo = info
+    },
+    setCR (state, cr) {
+      state.crSymbol = cr
+    },
+    setCRToken (state, token) {
+      state.crToken = token
     }
   },
   actions: {
@@ -91,6 +99,8 @@ export default createStore({
             context.commit('setToken', response.data.token)
             router.push('/2fa')
           } else {
+            context.commit('setToken', response.data.token)
+            context.dispatch('getCrSymbol')
             router.push('/hash')
           }
         })
@@ -103,30 +113,44 @@ export default createStore({
           })
         })
     },
+    getCrSymbol (context) {
+      axios.post('https://bas.shiya.site/api/cr/symbol', { token: context.state.loginToken })
+        .then((response) => {
+          context.commit('setCR', response.data.symbol)
+          context.commit('setCRToken', response.data.cr_token)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     sentSign (context, body) {
+      let url = ''
       if (context.state.signMode === 'gesture') {
-        axios.post('https://bas.shiya.site/api/gsign/2fa', body)
-          .then((response) => {
-            ElNotification({
-              title: '簽名通過！',
-              message: '簽名通過！',
-              type: 'success'
-            })
-            context.commit('set2FAToken', response.data.token)
-            context.dispatch('getUserInfo')
-            router.push('/user')
-          })
-          .catch((error) => {
-            console.log(error)
-            ElNotification({
-              title: '錯誤',
-              message: '簽名遭到拒絕！',
-              type: 'error'
-            })
-            context.commit('setSentLock', true)
-            context.commit('resetSign')
-          })
+        url = 'https://bas.shiya.site/api/gsign/2fa'
+      } else {
+        url = 'https://bas.shiya.site/api/airsign/2fa'
       }
+      axios.post(url, body)
+        .then((response) => {
+          ElNotification({
+            title: '簽名通過！',
+            message: '簽名通過！',
+            type: 'success'
+          })
+          context.commit('set2FAToken', response.data.token)
+          context.dispatch('getUserInfo')
+          router.push('/user')
+        })
+        .catch((error) => {
+          console.log(error)
+          ElNotification({
+            title: '錯誤',
+            message: '簽名遭到拒絕！',
+            type: 'error'
+          })
+          context.commit('setSentLock', true)
+          context.commit('resetSign')
+        })
     },
     getUserInfo (context) {
       axios.post('https://bas.shiya.site/api/user/info', { token: context.state.twoFAToken })

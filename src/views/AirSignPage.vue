@@ -41,6 +41,7 @@
             >
               重新繪製
             </el-button>
+            <span style="color:white;font-size:18px">    請簽名：{{ $store.state.crSymbol }}</span>
           </div>
           <canvas
             ref="outputCanvas"
@@ -156,6 +157,7 @@ export default {
           if (writePhase.value <= 1) {
             await hands.send({ image: inputVideo.value })
             drawSign(ctx.value)
+            checkHold()
           }
         }
       })
@@ -310,7 +312,6 @@ export default {
     // 每100毫秒檢測一次手部靜止狀態
     onMounted(() => {
       ctx.value = outputCanvas.value.getContext('2d')
-      setInterval(checkHold, 100)
       init()
     })
     // 每100毫秒檢測一下holdSecond的秒數，超過1.5秒就可以加上3秒的靜止動畫
@@ -328,6 +329,8 @@ export default {
             message: '簽名已送出！等待跳轉中...',
             type: 'success'
           })
+          const body = { cr_token: store.state.crToken, landmark: store.state.handLandmarkPosition }
+          store.dispatch('sentSign', body)
         }
         // if (sentLock.value === true) {
         //   ElNotification({
