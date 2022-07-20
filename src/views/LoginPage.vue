@@ -50,12 +50,6 @@
           </el-form-item>
         </el-form>
       </div>
-      <div class="powered">
-        Powered by <img
-          src="@/assets/MPlogo.png"
-          style="width:16px;filter: grayscale(100%) brightness(100) opacity(0.5);vertical-align:text-top"
-        >Mediapipe.
-      </div>
     </div>
   </div>
 </template>
@@ -129,14 +123,7 @@ $phones-media: 600px;
     text-align:left;
   }
 }
-.powered{
-  color:rgba(255,255,255, 0.5);
-  position: absolute;
-  width:100vw;
-  font-size: 12px;
-  bottom: 0px;
-  margin-bottom: 5px;
-}
+
 @media only screen and (max-width: $phones-media) {
   //手機版css
   .login-box{

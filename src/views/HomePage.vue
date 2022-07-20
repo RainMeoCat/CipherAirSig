@@ -22,7 +22,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
   .HomePage{
     display:flex;
     justify-content: center;
@@ -31,8 +31,9 @@ export default {
     height:100vh
   }
   .pray {
+    mix-blend-mode: color-burn;
+    color: rgba(50, 50, 50, 0.3);
     font-size:26px;
-    color:rgba(255,255,255,0.5);
     font-weight:bold
   }
 </style>

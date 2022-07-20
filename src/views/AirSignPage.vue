@@ -31,6 +31,13 @@
         style="position:relative"
       >
         <div v-show="cameraShow">
+          <transition name="el-fade-in">
+            <img
+              :key="thermalSrc"
+              class="thermal"
+              :src="thermalSrc"
+            >
+          </transition>
           <div class="sign-option">
             <el-button
               type="danger"
@@ -75,6 +82,7 @@ import { ref, computed, onMounted, reactive, watch } from 'vue'
 import { Hands, VERSION } from '@mediapipe/hands'
 import { Camera } from '@mediapipe/camera_utils'
 import useHashSignCapture from '@/composables/useHashSignCapture'
+import axios from 'axios'
 export default {
   name: '2FAPage',
   setup () {
@@ -134,6 +142,8 @@ export default {
     const inputVideo = computed(() => {
       return hiddenCamera.value
     })
+    // 熱像儀
+    const thermalSrc = ref('https://i.imgur.com/Ij8S4gq.png')
     // 初始化
     function init () {
       // 載入hands檔案
@@ -307,11 +317,20 @@ export default {
       requestAnimationFrame(fpsLoop)
     }
     requestAnimationFrame(fpsLoop)
-
+    function getThermal () {
+      axios.get('https://bas.shiya.site/api/lepton/realtime')
+        .then((response) => {
+          thermalSrc.value = 'data:image/png;base64, ' + response.data.image
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
     // 元素掛載後傳遞canvas主體給ctx，並初始化
     // 每100毫秒檢測一次手部靜止狀態
     onMounted(() => {
       ctx.value = outputCanvas.value.getContext('2d')
+      setInterval(getThermal, 1000)
       init()
     })
     // 每100毫秒檢測一下holdSecond的秒數，超過1.5秒就可以加上3秒的靜止動畫
@@ -381,7 +400,10 @@ export default {
       // 界面狀態操作
       signState,
       // 送出狀態鎖定
-      writePhase
+      writePhase,
+      // 熱像儀
+      thermalSrc,
+      getThermal
     }
   }
 }
@@ -513,6 +535,18 @@ $phones-media: 600px;
     border-radius: 5px;
     text-align: left;
     padding: 15px;
+  }
+  .thermal{
+    width:100px;
+    height:100px;
+    position:absolute;
+    top:30px;
+    right:30px;
+    z-index:100;
+    border:solid 4px;
+    border-color: white;
+    border-radius:5px;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));
   }
   .login-btn {
     width: 100px;

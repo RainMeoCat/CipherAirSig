@@ -39,6 +39,12 @@
         hash
       </el-link>
     </div>
+    <div class="powered">
+      Powered by <img
+        src="@/assets/MPlogo.png"
+        style="width:16px;filter: grayscale(100%) brightness(0.6) opacity(1);vertical-align:text-top"
+      >Mediapipe.
+    </div>
     <ul class="circles">
       <li
         v-for="n in 10"
@@ -163,11 +169,12 @@ body{
   font-size:24px
 }
 .nav {
+  mix-blend-mode: color-burn;
   text-align:left;
   position:absolute;
   bottom:10px;
   left:10px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(50, 50, 50, 0.3);
   font-weight: bold;
   z-index: 999;
   h1{
@@ -175,13 +182,23 @@ body{
     font-size:24px;
   }
   .nav-a {
-    color: rgba(255,255,255,0.5);
+    color: rgba(50, 50, 50, 0.5);
     font-weight: bold;
     transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
     &:hover {
-      color: rgba(0, 242, 255, 0.35);
+      color: rgba(0, 255, 247, 0.5);
     }
   }
+}
+.powered{
+  mix-blend-mode: color-burn;
+  color:rgba(50, 50, 50, 0.75);
+  position: absolute;
+  width:100vw;
+  font-size: 12px;
+  bottom: 0px;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 .fade-enter-active,
 .fade-leave-active {
