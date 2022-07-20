@@ -14,10 +14,10 @@ import tensorflow as tf
 import json
 from sqlalchemy import text
 from app.airsign.predict import airsign_predict
-with tf.device('/cpu:0'):
-    model_path = "./app/airsign/20220719_170457_f1_d3_vgg16_finetune_degree_range_30.h5"
-    model = tf.keras.models.load_model(
-        model_path)
+# with tf.device('/cpu:0'):
+#     model_path = "./app/airsign/20220719_170457_f1_d3_vgg16_finetune_degree_range_30.h5"
+#     model = tf.keras.models.load_model(
+#         model_path)
 
 
 @airsign.route('/2fa', methods=['POST'])
