@@ -72,6 +72,7 @@ def user_info():
             "user_name": user.user_name,
             "last_login": user.last_login,
             "register_time": user.register_time,
+            "avatar": user.avatar
         }
 
         return jsonify(sechmas), 200
@@ -88,7 +89,8 @@ def register():
         "password": "",
         "email": request_body['email'],
         "age": request_body['age'],
-        "gender": request_body['gender']
+        "gender": request_body['gender'],
+        "avatar": request_body['avatar']
     }
     log = {
         "api": request.path,

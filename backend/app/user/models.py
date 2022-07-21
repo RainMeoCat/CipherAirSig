@@ -16,5 +16,6 @@ class User(db.Model):
     gender = db.Column(db.String(10), nullable=False)
     password = db.Column(db.String(75), nullable=False)
     last_login = db.Column(db.DateTime, default=func.now(),  nullable=False)
+    avatar = db.Column(db.String(200), nullable=True)
     register_time = db.Column(
         db.DateTime, default=func.now(),  nullable=False)

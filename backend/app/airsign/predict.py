@@ -1,8 +1,8 @@
-import tensorflow as tf
+# import tensorflow as tf
 import json
 import numpy as np
 from scipy.interpolate import interp1d
-from keras.models import Sequential, Model
+
 
 # with tf.device('/cpu:0'):
 #     model_path = "./app/airsign/20220719_170457_f1_d3_vgg16_finetune_degree_range_30.h5"
@@ -28,9 +28,6 @@ def airsign_predict(landmark):
     finger_position_x = []
     finger_position_y = []
     finger_position_z = []
-    finger_speed_x = []
-    finger_speed_y = []
-    finger_speed_z = []
 
     for frame_number in landmark[0:-45]:
         finger_tip = frame_number['landmark'][8]

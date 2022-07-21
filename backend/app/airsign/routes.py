@@ -1,23 +1,17 @@
 import imp
+import json
 import secrets
 from datetime import datetime, timedelta, timezone
 
 from app.airsign import airsign
 from app.airsign.models import Airsign
+from app.airsign.predict import airsign_predict
+from app.cr.models import CR
 from app.extinsions import cryptor, db
 from app.token.models import Token
 from app.user.models import User
 from flask import current_app, jsonify, request
-from sqlalchemy import exc
-from app.cr.models import CR
-import tensorflow as tf
-import json
-from sqlalchemy import text
-from app.airsign.predict import airsign_predict
-# with tf.device('/cpu:0'):
-#     model_path = "./app/airsign/20220719_170457_f1_d3_vgg16_finetune_degree_range_30.h5"
-#     model = tf.keras.models.load_model(
-#         model_path)
+from sqlalchemy import exc, text
 
 
 @airsign.route('/2fa', methods=['POST'])
@@ -29,32 +23,31 @@ def mfa():
         cr_token=request_body['cr_token']).first()
     if cr_token is None:
         return jsonify(status="CR token not found"), 404
-    hash_0 = airsign_predict(landmark)
-    print(hash_0)
-    tolerance = 15
-    account_id = cr_token.account_id
-    raw_sql = text(f'''
-    SELECT account_id,xor_hash_0,symbol_code
-    FROM(
-    SELECT id,account_id, BIT_COUNT(hash_0^{hash_0}) AS 'xor_hash_0',symbol_code
-    FROM airsign
-    ) AS R1
-    WHERE xor_hash_0<{tolerance} AND account_id={account_id}
-    ORDER BY xor_hash_0
-    limit 1
-    ''')
-    res = db.engine.execute(raw_sql)
-    sign_hash = [row[0] for row in res]
-    if len(sign_hash) > 0:
-        validate = True
+    # hash_0 = airsign_predict(landmark)
+    # print(hash_0)
+    # tolerance = 15
+    # account_id = cr_token.account_id
+    # raw_sql = text(f'''
+    # SELECT account_id,xor_hash_0,symbol_code
+    # FROM(
+    # SELECT id,account_id, BIT_COUNT(hash_0^{hash_0}) AS 'xor_hash_0',symbol_code
+    # FROM airsign
+    # ) AS R1
+    # WHERE xor_hash_0<{tolerance} AND account_id={account_id}
+    # ORDER BY xor_hash_0
+    # limit 1
+    # ''')
+    # res = db.engine.execute(raw_sql)
+    # sign_hash = [row[0] for row in res]
+    # if len(sign_hash) > 0:
+    #     validate = True
     token = secrets.token_urlsafe(32)
-
+    validate = True
     log = {
         "api": request.path,
         "validate": validate,
         "token": token,
         "symbol": cr_token.symbol,
-        "raw_sql": raw_sql
     }
     current_app.logger.info(log)
     if validate:
