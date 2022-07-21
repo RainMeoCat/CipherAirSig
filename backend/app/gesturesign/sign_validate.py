@@ -79,7 +79,7 @@ def sign_validate(sign, id):
     with open('./app/gesturesign/DB/' +str(id) + '/template/dist.txt') as dist_file:
         sign_info = dist_file.read().splitlines()
     if(not pinch_check(sign, list(template_list))):
-        return False
+        return False, 'pinch'
     if(not graph_check(sign, list(template_list), sign_info[0])):
-        return False
-    return True
+        return False, 'graph'
+    return True, 'pass'

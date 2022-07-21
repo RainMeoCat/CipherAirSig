@@ -28,7 +28,7 @@ def mfa():
         if(key['email'] == email):
             target_id = index
     login_sign = signProcess.convert(request_body['landmark'],target_id)
-    validate = sign_validate.sign_validate(login_sign, target_id)
+    validate, reason = sign_validate.sign_validate(login_sign, target_id)
     print(email)
     print(validate)
     print(target_id)
@@ -53,4 +53,4 @@ def mfa():
         db.session.commit()
         db.session.close()
         return jsonify(sechmas), 200
-    return jsonify({"status": "sign rejected."}), 403
+    return jsonify({"status": "sign rejected.,reason:" + str(reason)}), 403
