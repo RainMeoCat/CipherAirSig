@@ -1,22 +1,14 @@
-import imp
+import base64
 import json
-import secrets
 from datetime import datetime, timedelta, timezone
 
+import cv2
+import numpy as np
+from app.extinsions import cryptor, db
 from app.lepton import lepton
 from app.lepton.models import Lepton
-from app.extinsions import cryptor, db
-from app.token.models import Token
-from app.user.models import User
 from flask import current_app, jsonify, request
 from sqlalchemy import exc, text
-import base64
-import io
-import matplotlib
-import matplotlib.pyplot as plt
-import numpy as np
-import cv2
-matplotlib.use('TkAgg')
 
 
 @lepton.route('/realtime', methods=['GET'])
