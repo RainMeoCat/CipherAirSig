@@ -1,7 +1,9 @@
 # Jetson NX setup
 
 # Images
-https://developer.nvidia.com/embedded/learn/get-started-jetson-xavier-nx-devkit
+> https://developer.nvidia.com/embedded/learn/get-started-jetson-xavier-nx-devkit
+
+> https://developer.nvidia.com/embedded/jetpack-archive
 
 # 啟動設定
 ```=bash
