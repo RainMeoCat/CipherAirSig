@@ -9,6 +9,7 @@ from app.lepton import lepton
 from app.lepton.models import Lepton
 from flask import current_app, jsonify, request
 from sqlalchemy import exc, text
+import tensorflow as tf
 
 
 @lepton.route('/realtime', methods=['GET'])
@@ -32,9 +33,13 @@ def get_lepton():
 
 @lepton.route('/raw_insert', methods=['POST'])
 def insert_raw_lepton():
+    model = tf.keras.models.load_model(
+        "./app/lepton/liveness_model.h5")
     request_body = request.get_json()
     raw_img = request_body['raw_data']
     raw_img = json.loads(raw_img)
+    predict_img = np.reshape(raw_img, (1, 60, 80))
+    liveness_confidence = np.argmax(model.predict(predict_img))
     img = np.reshape(raw_img, (60, 80))*20
     img = np.uint8(img)
     heatmap = cv2.applyColorMap(img, cv2.COLORMAP_JET)
@@ -42,18 +47,19 @@ def insert_raw_lepton():
         cv2.imencode('.jpg', heatmap)[1]).decode()
     sechmas = {
         "base64_temperature": my_base64_jpgData,
+        "confidence": liveness_confidence,
         "create_time": datetime.now(timezone(timedelta(hours=+8)))
     }
     log = {
-        "api": request.path
+        "api": request.path,
+        "liveness_confidence": liveness_confidence
     }
     lepton = Lepton(**sechmas)
-    # current_app.logger.info(log)
     try:
         db.session.add(lepton)
         db.session.commit()
         db.session.close()
-        # current_app.logger.info(log)
+        current_app.logger.info(log)
         return jsonify(status=True), 200
     except exc.SQLAlchemyError as e:
         log['sql'] = e
