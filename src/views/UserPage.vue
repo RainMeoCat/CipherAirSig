@@ -46,10 +46,10 @@ export default {
     text-align: left;
     align-items: center;
     background-color: rgba(255,255,255,0.5);
-    width:50vw;
+    width:65vw;
     height: 40vh;
-    font-size: 18px;
-    line-height: 54px;
+    font-size: 3vmin;
+    line-height: 6vmin;
     border-radius: 10px
   }
   .pray {

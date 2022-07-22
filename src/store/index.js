@@ -139,6 +139,7 @@ export default createStore({
           })
           context.commit('set2FAToken', response.data.token)
           context.dispatch('getUserInfo')
+          context.commit('resetSign')
           router.push('/user')
         })
         .catch((error) => {
