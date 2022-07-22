@@ -57,7 +57,6 @@ def mfa():
     if len(sign_hash) > 0:
         validate = True
     token = secrets.token_urlsafe(32)
-    validate = True
     log = {
         "api": request.path,
         "validate": validate,
