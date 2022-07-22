@@ -81,7 +81,8 @@ def mfa():
         db.session.commit()
         db.session.close()
         return jsonify(sechmas), 200
-    return jsonify(status="forbidden"), 403
+    else:
+        return jsonify(status="forbidden"), 403
 
 
 @airsign.route('/search', methods=['POST'])
