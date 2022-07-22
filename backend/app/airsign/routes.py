@@ -12,6 +12,7 @@ from app.token.models import Token
 from app.user.models import User
 from flask import current_app, jsonify, request
 from sqlalchemy import exc, text
+from collections import Counter
 
 
 @airsign.route('/2fa', methods=['POST'])
@@ -23,10 +24,24 @@ def mfa():
         cr_token=request_body['cr_token']).first()
     if cr_token is None:
         return jsonify(status="CR token not found"), 404
+    lepton_raw_sql = '''
+    SELECT predict_class
+    FROM lepton
+    ORDER BY create_time DESC
+    LIMIT 10
+    '''
+    lepton_res = db.engine.execute(lepton_raw_sql)
+    predict_class = [row[0] for row in lepton_res]
+    predict = Counter(predict_class)
+    print(predict[0])
+    if predict[0] < predict[2] or predict[1] < predict[0]:
+        return jsonify(status="forbidden"), 403
+
     hash_0 = airsign_predict(landmark)
     print(hash_0)
-    tolerance = 15
+    tolerance = 8
     account_id = cr_token.account_id
+
     raw_sql = text(f'''
     SELECT account_id,xor_hash_0,symbol_code
     FROM(
