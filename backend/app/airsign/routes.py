@@ -41,14 +41,14 @@ def mfa():
     print(hash_0)
     tolerance = 4
     account_id = cr_token.account_id
-
+    symbol_code = cr_token.symbol_code
     raw_sql = text(f'''
     SELECT account_id,xor_hash_0,symbol_code
     FROM(
     SELECT id,account_id, BIT_COUNT(hash_0^{hash_0}) AS 'xor_hash_0',symbol_code
     FROM airsign
     ) AS R1
-    WHERE xor_hash_0<{tolerance} AND account_id={account_id}
+    WHERE xor_hash_0<{tolerance} AND account_id={account_id} AND symbol_code={symbol_code}
     ORDER BY xor_hash_0
     limit 1
     ''')
