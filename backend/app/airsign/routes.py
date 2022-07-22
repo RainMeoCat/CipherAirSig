@@ -39,7 +39,7 @@ def mfa():
 
     hash_0 = airsign_predict(landmark)
     print(hash_0)
-    tolerance = 8
+    tolerance = 4
     account_id = cr_token.account_id
 
     raw_sql = text(f'''
