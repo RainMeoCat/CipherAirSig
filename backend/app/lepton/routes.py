@@ -39,7 +39,7 @@ def insert_raw_lepton():
     raw_img = request_body['raw_data']
     raw_img = json.loads(raw_img)
     predict_img = np.reshape(raw_img, (1, 60, 80))
-    liveness_confidence = np.argmax(model.predict(predict_img))
+    liveness_confidence = model.predict(predict_img)
     img = np.reshape(raw_img, (60, 80))*20
     img = np.uint8(img)
     heatmap = cv2.applyColorMap(img, cv2.COLORMAP_JET)
@@ -47,20 +47,25 @@ def insert_raw_lepton():
         cv2.imencode('.jpg', heatmap)[1]).decode()
     sechmas = {
         "base64_temperature": my_base64_jpgData,
-        "confidence": liveness_confidence,
+        "predict_class": np.argmax(liveness_confidence),
+        "confidence": str(np.max(liveness_confidence)),
         "create_time": datetime.now(timezone(timedelta(hours=+8)))
     }
     log = {
         "api": request.path,
-        "liveness_confidence": liveness_confidence
+        "liveness_confidence": np.max(liveness_confidence)
     }
-    lepton = Lepton(**sechmas)
     try:
+        lepton = Lepton(**sechmas)
         db.session.add(lepton)
         db.session.commit()
         db.session.close()
-        current_app.logger.info(log)
-        return jsonify(status=True), 200
+        # current_app.logger.info(log)
+        res = {
+            "predict_class": str(np.argmax(liveness_confidence)),
+            "predict_confidence": str(np.max(liveness_confidence))
+        }
+        return jsonify(res), 200
     except exc.SQLAlchemyError as e:
         log['sql'] = e
         current_app.logger.warning(log)
