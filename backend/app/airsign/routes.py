@@ -34,8 +34,8 @@ def mfa():
     predict_class = [row[0] for row in lepton_res]
     predict = Counter(predict_class)
     print("predict_class", predict)
-    # if predict[0] < predict[2] or predict[1] < predict[0]:
-    #     return jsonify(status="forbidden"), 403
+    if predict[0] < predict[2] or predict[1] < predict[0]:
+        return jsonify(status="forbidden"), 403
 
     hash_0 = airsign_predict(landmark)
     print(hash_0)
