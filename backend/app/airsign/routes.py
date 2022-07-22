@@ -33,9 +33,9 @@ def mfa():
     lepton_res = db.engine.execute(lepton_raw_sql)
     predict_class = [row[0] for row in lepton_res]
     predict = Counter(predict_class)
-    print(predict[0])
-    if predict[0] < predict[2] or predict[1] < predict[0]:
-        return jsonify(status="forbidden"), 403
+    print("predict_class", predict)
+    # if predict[0] < predict[2] or predict[1] < predict[0]:
+    #     return jsonify(status="forbidden"), 403
 
     hash_0 = airsign_predict(landmark)
     print(hash_0)
