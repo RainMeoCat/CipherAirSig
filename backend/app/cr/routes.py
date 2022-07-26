@@ -13,7 +13,7 @@ import random
 
 @cr.route('/symbol', methods=['POST'])
 def cr():
-    symbol = ["ant", "ham", "$", "Custom"]
+    symbol = ["ant", "ham", "$"]
     request_body = request.get_json()
 
     db_token = Token.query.filter_by(
