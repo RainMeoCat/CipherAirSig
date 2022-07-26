@@ -34,12 +34,10 @@ def mfa():
     predict_class = [row[0] for row in lepton_res]
     predict = Counter(predict_class)
     print("predict_class", predict)
-    if predict[0] < predict[2] or predict[1] < predict[0]:
-        return jsonify(status="forbidden"), 403
 
     hash_0 = airsign_predict(landmark)
     print(hash_0)
-    tolerance = 8
+    tolerance = 4
     account_id = cr_token.account_id
     symbol_code = cr_token.symbol_code
     raw_sql = text(f'''
@@ -64,6 +62,9 @@ def mfa():
         "symbol": cr_token.symbol,
     }
     # current_app.logger.info(log)
+    if predict[1] < predict[2] and predict[0] < predict[2]:
+        return jsonify(status="forbidden"), 403
+
     if validate:
         user = User.query.filter(User.id == cr_token.account_id).first()
         sechmas = {
