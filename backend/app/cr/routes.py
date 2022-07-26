@@ -13,7 +13,7 @@ import random
 
 @cr.route('/symbol', methods=['POST'])
 def cr():
-    symbol = ["ant", "ham", "$"]
+    symbol = ["ant", "ham", "$", "☆"]
     request_body = request.get_json()
 
     db_token = Token.query.filter_by(
@@ -21,7 +21,7 @@ def cr():
     if db_token is None:
         return jsonify(status="token not found"), 404
 
-    choice_symbol = random.randint(0, int(len(symbol)))
+    choice_symbol = random.randint(0, 3)
     cr_token = secrets.token_urlsafe(32)
     sechmas = {
         "account_id": db_token.account_id,
