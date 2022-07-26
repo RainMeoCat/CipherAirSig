@@ -176,7 +176,7 @@ body{
   left:10px;
   color: rgba(50, 50, 50, 0.3);
   font-weight: bold;
-  z-index: 999;
+  z-index: 1;
   h1{
     margin:0px;
     font-size:24px;

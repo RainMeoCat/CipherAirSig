@@ -192,10 +192,10 @@ export default function useSignCapture (landmarks, detected) {
       return '運動中'
     } else {
       for (let i = 0; i < CURR.length; i++) {
-        if (Math.abs(CURR[i].x - PREV[i].x) > 0.0065) {
+        if (Math.abs(CURR[i].x - PREV[i].x) > 0.008) {
           return '運動中'
         }
-        if (Math.abs(CURR[i].y - PREV[i].y) > 0.0065) {
+        if (Math.abs(CURR[i].y - PREV[i].y) > 0.008) {
           return '運動中'
         }
       }
