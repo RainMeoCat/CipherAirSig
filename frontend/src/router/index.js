@@ -3,7 +3,6 @@ import LoginPage from '../views/LoginPage.vue'
 import HomePage from '../views/HomePage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
 import TwoFactorPage from '../views/2FAPage.vue'
-import Hash from '../views/AirSignPage.vue'
 import User from '../views/UserPage.vue'
 import store from '../store'
 const routes = [
@@ -31,11 +30,6 @@ const routes = [
     path: '/user',
     name: 'user',
     component: User
-  },
-  {
-    path: '/hash',
-    name: 'Hash',
-    component: Hash
   }
 ]
 

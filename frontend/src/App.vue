@@ -3,6 +3,38 @@
     class="app"
     :class="$store.getters.returnModeColor"
   >
+    <el-dialog
+      v-model="visible"
+      :show-close="false"
+    >
+      <template #header="{ close, titleId, titleClass }">
+        <div class="my-header">
+          <h1
+            :id="titleId"
+            :class="titleClass"
+            style="font-size:24px"
+          >
+            這是什麼?
+          </h1>
+          <el-button
+            type="danger"
+            :icon="CircleCloseFilled"
+            @click="close"
+          >
+            Close
+          </el-button>
+        </div>
+      </template>
+      <div style="font-size:16px;text-align:left">
+        該網頁系統可以從視覺上捕捉使用者的手部骨架，並應用手勢變化來簽名，本系統規劃了四種手勢，
+        四種手勢對應每一個筆畫，依據筆畫順序能產生出一個編碼序列，作為密碼，能夠增加簽名生物認證的安全性，同時也會以筆跡、簽名速度來進行驗證。
+        <img
+          src="@/assets/簽名流程.png"
+          style="margin:15px 0px;width:100%"
+        >
+        系統尚在構建中，尚不開放註冊，僅提供預設的兩組簽名/兩組帳號供測試，目前只能在電腦上使用，請使用Chrome/edge瀏覽器，並開啟網頁的攝像頭權限。
+      </div>
+    </el-dialog>
     <transition
       name="el-fade-in"
       appear
@@ -14,30 +46,48 @@
         {{ $store.state.signMode }}
       </div>
     </transition>
-    <div class="nav">
-      <h1>
+    <div style="background-color:white;border-radius:10px">
+      <div class="nav">
+        <h1>
+          <el-link
+            class="nav-a"
+            :underline="false"
+            style="font-size:24px;"
+            @click="returnHome()"
+          >
+            CipherAirSig demo
+          </el-link>
+        </h1>
         <el-link
           class="nav-a"
           :underline="false"
-          style="font-size:24px;"
-          @click="returnHome()"
+          @click="visible = true"
         >
-          ITALAB 2022 thesis demo
-        </el-link>
-      </h1>
-      <el-link
-        class="nav-a"
-        :underline="false"
-        @click="enterMode('gesture')"
-      >
-        gesture
-      </el-link>  /  <el-link
-        class="nav-a"
-        :underline="false"
-        @click="enterMode('hash')"
-      >
-        hash
-      </el-link>
+          這是什麼？
+        </el-link> |
+        <el-link
+          class="nav-a"
+          :underline="false"
+          @click="enterMode('gesture')"
+        >
+          登入
+        </el-link> |
+        <el-tooltip
+          class="box-item"
+          effect="dark"
+          content="尚未開放"
+          placement="right"
+        >
+          <el-link
+            class="nav-a"
+            :underline="false"
+            disabled
+            @click="enterMode('gesture')"
+          >
+            註冊
+          </el-link>
+        </el-tooltip>
+      </div>
     </div>
     <div class="powered">
       Powered by <img
@@ -62,13 +112,16 @@
   </div>
 </template>
 <script>
+import { CircleCloseFilled } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { ref } from 'vue'
 export default {
   name: 'App',
   setup () {
     const router = useRouter()
     const store = useStore()
+    const visible = ref(false)
     function returnHome () {
       store.commit('resetSign')
       store.commit('changeMode', '')
@@ -80,24 +133,26 @@ export default {
       router.push('/login')
     }
     return {
+      visible,
       enterMode,
-      returnHome
+      returnHome,
+      CircleCloseFilled
     }
   }
 }
 </script>
 <style lang="scss" scoped>
 @import "./assets/font.css";
-.circles{
+.circles {
   position: absolute;
   top: 0;
   left: 0;
-  z-index:0;
+  z-index: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  margin:0px;
-  padding:0px;
+  margin: 0px;
+  padding: 0px;
   li {
     position: absolute;
     display: block;
@@ -109,30 +164,30 @@ export default {
     bottom: -150px;
   }
 }
-$circles-size: (80px,20px,20px,60px,20px,110px,150px,25px,15px,150px);
-$circles-position: (25%,10%,70%,40%,65%,75%,35%,50%,20%,85%);
-$circles-delay: (0s,2s,4s,0s,0s,3s,7s,15s,2s,0s);
-$circles-duration: (25s,12s,25s,18s,25s,25s,25s,25s,45s,35s);
+$circles-size: (80px, 20px, 20px, 60px, 20px, 110px, 150px, 25px, 15px, 150px);
+$circles-position: (25%, 10%, 70%, 40%, 65%, 75%, 35%, 50%, 20%, 85%);
+$circles-delay: (0s, 2s, 4s, 0s, 0s, 3s, 7s, 15s, 2s, 0s);
+$circles-duration: (25s, 12s, 25s, 18s, 25s, 25s, 25s, 25s, 45s, 35s);
 @for $i from 1 through 10 {
   $position: nth($circles-position, $i);
   $delay: nth($circles-delay, $i);
   $duration: nth($circles-duration, $i);
   $size: nth($circles-size, $i);
-  .circles li:nth-child(#{$i}){
+  .circles li:nth-child(#{$i}) {
     left: $position;
     width: $size;
     height: $size;
     animation-delay: $delay;
-    animation-duration: $duration
+    animation-duration: $duration;
   }
 }
 @keyframes animate {
-  0%{
+  0% {
     transform: translateY(0) rotate(0deg);
     opacity: 1;
     border-radius: 0;
   }
-  100%{
+  100% {
     transform: translateY(-1000px) rotate(720deg);
     opacity: 0;
     border-radius: 50%;
@@ -142,8 +197,16 @@ $circles-duration: (25s,12s,25s,18s,25s,25s,25s,25s,45s,35s);
   font-family: "Gen Jyuu Gothic";
   text-align: center;
   color: #2c3e50;
-  background: linear-gradient(180deg, #e1803f, #fef2ad, #7361E4, #F8ADFE, #3ab25a, #adfed1);
-  background-size:500% 500%;
+  background: linear-gradient(
+    180deg,
+    #e1803f,
+    #fef2ad,
+    #7361e4,
+    #f8adfe,
+    #3ab25a,
+    #adfed1
+  );
+  background-size: 500% 500%;
   height: 100vh;
   width: 100vw;
   background-position: 0% 0%;
@@ -157,44 +220,54 @@ $circles-duration: (25s,12s,25s,18s,25s,25s,25s,25s,45s,35s);
   background-position: 0% 100%;
   transition: all 1s cubic-bezier(0.33, 1, 0.68, 1);
 }
-body{
-  margin:0px;
+body {
+  margin: 0px;
 }
-.mode{
-  position:absolute;
-  top:10px;
-  right:10px;
-  color:rgba(255,255,255,0.5);
+.mode {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: rgba(255, 255, 255, 0.5);
   font-weight: bold;
-  font-size:24px
+  font-size: 24px;
 }
 .nav {
-  mix-blend-mode: color-burn;
-  text-align:left;
-  position:absolute;
-  bottom:10px;
-  left:10px;
-  color: rgba(50, 50, 50, 0.3);
+  background-color: white;
+  padding: 10px 15px;
+  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.5));
+  border-radius: 5px;
+  color: rgb(85, 85, 85);
+  text-align: left;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
   font-weight: bold;
   z-index: 100;
-  h1{
-    margin:0px;
-    font-size:24px;
+  h1 {
+    margin: 0px;
+    font-size: 24px;
   }
   .nav-a {
-    color: rgba(50, 50, 50, 0.5);
+    color: rgb(85, 85, 85) !important;
     font-weight: bold;
+    font-size: 16px;
     transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
     &:hover {
-      color: rgba(0, 255, 247, 0.5);
+      color: rgb(70, 193, 255) !important;
     }
   }
 }
-.powered{
+.my-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.powered {
   mix-blend-mode: color-burn;
-  color:rgba(50, 50, 50, 0.75);
+  color: rgba(50, 50, 50, 0.75);
   position: absolute;
-  width:100vw;
+  width: 100vw;
   font-size: 12px;
   bottom: 0px;
   margin-bottom: 5px;
