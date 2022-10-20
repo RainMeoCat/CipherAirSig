@@ -14,24 +14,26 @@
             :class="titleClass"
             style="font-size:24px"
           >
-            這是什麼?
+            CipherAirSig是什麼?
           </h1>
           <el-button
             type="danger"
             :icon="CircleCloseFilled"
             @click="close"
           >
-            Close
+            關閉
           </el-button>
         </div>
       </template>
       <div style="font-size:16px;text-align:left">
-        該網頁系統可以從視覺上捕捉使用者的手部骨架，並應用手勢變化來簽名，本系統規劃了四種手勢，
+        該系統CipherAirSig可以從視覺上捕捉使用者的手部骨架，並應用手勢變化來簽名，本系統規劃了四種手勢，
         四種手勢對應每一個筆畫，依據筆畫順序能產生出一個編碼序列，作為密碼，能夠增加簽名生物認證的安全性，同時也會以筆跡、簽名速度來進行驗證。
-        <img
-          src="@/assets/簽名流程.png"
-          style="margin:15px 0px;width:100%"
-        >
+        <div style="width:100%;text-align:center">
+          <img
+            src="@/assets/簽名流程.png"
+            style="margin:15px 0px;width:85%"
+          >
+        </div>
         系統尚在構建中，尚不開放註冊，僅提供預設的兩組簽名/兩組帳號供測試，目前只能在電腦上使用，請使用Chrome/edge瀏覽器，並開啟網頁的攝像頭權限。
       </div>
     </el-dialog>

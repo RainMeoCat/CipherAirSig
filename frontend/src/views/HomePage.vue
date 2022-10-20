@@ -1,13 +1,19 @@
 <template>
-  <div class="HomePage">
-    <div>
-      <img
-        alt="Vue logo"
-        src="https://imgur.com/Ij8S4gq.png"
-      >
-      <br>
-      <div class="pray">
-        - 祝demo成功 -
+  <div style="position:absolute;z-index:1;">
+    <div class="HomePage">
+      <div>
+        <iframe
+          style="width:45vw;height:53vh"
+          src="https://www.youtube-nocookie.com/embed/NbQSbZvmfG0?controls=0&rel=0"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        />
+        <br>
+        <div class="pray">
+          - 目前不開放註冊，開放兩組帳號和簽名測試 -
+        </div>
       </div>
     </div>
   </div>
@@ -18,22 +24,20 @@
 
 export default {
   name: 'HomePage',
-  components: {
-  }
+  components: {}
 }
 </script>
 <style scoped>
-  .HomePage{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    width:100vw;
-    height:100vh
-  }
-  .pray {
-    mix-blend-mode: color-burn;
-    color: rgba(50, 50, 50, 0.3);
-    font-size:26px;
-    font-weight:bold
-  }
+.HomePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+.pray {
+  color: rgba(212, 92, 0, 0.484);
+  font-size: 20px;
+}
 </style>
