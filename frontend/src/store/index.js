@@ -18,6 +18,7 @@ export default createStore({
     crToken: '',
     twoFAToken: '',
     sentLock: true,
+    sigPic: require('@/assets/Sig1.png'),
     userInfo: {
       account: '',
       email: '',
@@ -25,8 +26,7 @@ export default createStore({
       register_time: '',
       user_name: '',
       avatar: ''
-    },
-    crSymbol: ''
+    }
   },
   getters: {
     returnModeColor (state) {
@@ -44,6 +44,9 @@ export default createStore({
     },
     setLinePinch (state, pinch) {
       state.signList[state.strokeIndicator].pinch = pinch
+    },
+    setSigPic (state, num) {
+      state.sigPic = require('@/assets/Sig' + num + '.png')
     },
     recordPosition (state, landmarks) {
       state.handLandmarkPosition.push(

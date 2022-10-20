@@ -12,6 +12,7 @@
     "@mediapipe/control_utils": "^0.6.1629159505",
     "@mediapipe/drawing_utils": "^0.3.1620248257",
     "@mediapipe/hands": "^0.4.1646424915",
+    "@uivjs/vue-github-corners": "^1.0.1",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "element-plus": "^2.0.3",

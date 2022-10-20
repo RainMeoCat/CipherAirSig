@@ -98,9 +98,11 @@ export default {
       if (num === 1) {
         loginForm.username = 'F110156111@nkust.edu.tw'
         loginForm.password = 'test'
+        store.commit('setSigPic', num)
       } else if (num === 2) {
         loginForm.username = 'F110156105@nkust.edu.tw'
         loginForm.password = 'test'
+        store.commit('setSigPic', num)
       }
     }
     return {

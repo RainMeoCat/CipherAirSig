@@ -14,9 +14,7 @@
         {{ signState }}
       </div>
     </transition>
-    <div
-      class="capture-info"
-    >
+    <div class="capture-info">
       FPS：{{ fps }}<br>
       與食指距離：{{ handDist.index }}<br>
       與中指距離：{{ handDist.middle }}<br>
@@ -25,10 +23,11 @@
       手部偵測狀態：{{ handDetected }}<br>
       手部靜止狀態：{{ ifHold }}<br>
     </div>
-    <div
-      class="sig-info"
-    >
-      test
+    <div class="sig-info">
+      <img
+        :src="$store.state.sigPic"
+        style="height:100%"
+      >
     </div>
     <video
       ref="hiddenCamera"
@@ -291,7 +290,10 @@ export default {
     // 監聽靜止狀態，對於靜止狀態的改變，由holdChange接收資料變化
     watch(ifHold, holdChange)
     function holdChange (newValue, oldValue) {
-      if (newValue === '靜止中' && store.state.handLandmarkPosition.length > 50) {
+      if (
+        newValue === '靜止中' &&
+        store.state.handLandmarkPosition.length > 50
+      ) {
         holdSecond.value = Date.now()
       } else {
         holdSecond.value = 0
@@ -321,7 +323,11 @@ export default {
     // 每100毫秒檢測一下holdSecond的秒數，超過1.5秒就可以加上3秒的靜止動畫
     function checkHold () {
       // if
-      if (holdSecond.value && Date.now() - holdSecond.value - 1500 > 1500 && store.state.handLandmarkPosition.length > 50) {
+      if (
+        holdSecond.value &&
+        Date.now() - holdSecond.value - 1500 > 1500 &&
+        store.state.handLandmarkPosition.length > 50
+      ) {
         signState.value = '簽名送出'
         if (store.state.sentLock === true) {
           ElNotification({
@@ -329,7 +335,10 @@ export default {
             message: '簽名已送出！等待驗證中...',
             type: 'success'
           })
-          const body = { token: store.state.loginToken, landmark: store.state.handLandmarkPosition }
+          const body = {
+            token: store.state.loginToken,
+            landmark: store.state.handLandmarkPosition
+          }
           store.dispatch('sentSign', body)
         }
         store.commit('setSentLock', false)
@@ -376,9 +385,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  :root {
+:root {
   --hold-progess: 0%;
- }
+}
 @keyframes animate {
   0% {
     transform: translateY(0) rotate(0deg);
@@ -436,7 +445,6 @@ $phones-media: 600px;
   }
 }
 @media only screen and (min-width: $phones-media) {
-
   //電腦版css
   .loading {
     background-color: rgba(0, 0, 0, 0.25);
@@ -447,22 +455,26 @@ $phones-media: 600px;
   }
   .container {
     height: 100vh;
-    background: linear-gradient(0deg, rgba(54, 153, 203, 0.492) 50%, rgba(0,0,0,0) 50%);
-    background-size:200% 200%;
+    background: linear-gradient(
+      0deg,
+      rgba(54, 153, 203, 0.492) 50%,
+      rgba(0, 0, 0, 0) 50%
+    );
+    background-size: 200% 200%;
     background-position: 0% 0%;
-    transition:  all 1.5s cubic-bezier(0.33, 1, 0.68, 1);
+    transition: all 1.5s cubic-bezier(0.33, 1, 0.68, 1);
   }
-  .stat{
+  .stat {
     mix-blend-mode: hard-light;
-    position:absolute;
-    bottom:15px;
-    right:10px;
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
     font-size: 10vmin;
     writing-mode: vertical-lr;
     font-weight: bold;
-    color: rgba(255,255,255,0.35)
+    color: rgba(255, 255, 255, 0.35);
   }
-  .container.progress{
+  .container.progress {
     background-position: 0% 100%;
   }
   .canvas-container {
@@ -486,14 +498,14 @@ $phones-media: 600px;
   .sig-info {
     width: 235px;
     background-clip: padding-box;
-    height: 150px;
+    height: 175px;
     border: rgba(255, 255, 255, 0.5) 7.5px solid;
     background-color: rgb(255, 255, 255);
     position: absolute;
     left: 10px;
     top: 300px;
     border-radius: 5px;
-    text-align: left;
+    text-align: center;
     padding: 15px;
   }
   .output-canvas {
@@ -501,7 +513,7 @@ $phones-media: 600px;
     border-radius: 5px;
     border: solid 10px;
     border-color: white;
-    vertical-align:bottom;
+    vertical-align: bottom;
     filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.2));
     transform: rotateY(180deg);
   }
