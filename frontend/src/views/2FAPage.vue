@@ -25,6 +25,11 @@
       手部偵測狀態：{{ handDetected }}<br>
       手部靜止狀態：{{ ifHold }}<br>
     </div>
+    <div
+      class="sig-info"
+    >
+      test
+    </div>
     <video
       ref="hiddenCamera"
       style="display:none;width:70vw;height:60vh"
@@ -477,6 +482,19 @@ $phones-media: 600px;
     padding: 5px;
     margin: 0 10px 10px 10px;
     background-color: rgba(0, 0, 0, 0.5);
+  }
+  .sig-info {
+    width: 235px;
+    background-clip: padding-box;
+    height: 150px;
+    border: rgba(255, 255, 255, 0.5) 7.5px solid;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 10px;
+    top: 300px;
+    border-radius: 5px;
+    text-align: left;
+    padding: 15px;
   }
   .output-canvas {
     width: 60vw;

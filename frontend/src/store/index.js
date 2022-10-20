@@ -10,6 +10,7 @@ export default createStore({
       line: [],
       pinch: ''
     }],
+    url: 'http://127.0.0.1:5000/api/',
     handLandmarkPosition: [],
     strokeIndicator: 0,
     signMode: '',
@@ -30,8 +31,7 @@ export default createStore({
   getters: {
     returnModeColor (state) {
       return {
-        gesture: state.signMode === 'gesture',
-        hash: state.signMode === 'hash'
+        gesture: state.signMode === 'gesture'
       }
     }
   },
@@ -92,17 +92,11 @@ export default createStore({
   },
   actions: {
     loginAndGetToken (context, body) {
-      axios.post('https://bas.shiya.site/api/user/login', body)
+      axios.post(context.state.url + 'user/login', body)
         .then((response) => {
           console.log(response)
-          if (context.state.signMode === 'gesture') {
-            context.commit('setToken', response.data.token)
-            router.push('/2fa')
-          } else {
-            context.commit('setToken', response.data.token)
-            context.dispatch('getCrSymbol')
-            router.push('/hash')
-          }
+          context.commit('setToken', response.data.token)
+          router.push('/2fa')
         })
         .catch((error) => {
           console.log(error)
@@ -113,23 +107,9 @@ export default createStore({
           })
         })
     },
-    getCrSymbol (context) {
-      axios.post('https://bas.shiya.site/api/cr/symbol', { token: context.state.loginToken })
-        .then((response) => {
-          context.commit('setCR', response.data.symbol)
-          context.commit('setCRToken', response.data.cr_token)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
     sentSign (context, body) {
       let url = ''
-      if (context.state.signMode === 'gesture') {
-        url = 'https://bas.shiya.site/api/gsign/2fa'
-      } else {
-        url = 'https://bas.shiya.site/api/airsign/2fa'
-      }
+      url = context.state.url + 'gsign/2fa'
       axios.post(url, body)
         .then((response) => {
           ElNotification({
@@ -154,7 +134,7 @@ export default createStore({
         })
     },
     getUserInfo (context) {
-      axios.post('https://bas.shiya.site/api/user/info', { token: context.state.twoFAToken })
+      axios.post(context.state.url + 'user/info', { token: context.state.twoFAToken })
         .then((response) => {
           context.commit('setUserInfo', response.data)
         })

@@ -3,7 +3,7 @@
     <div class="HomePage">
       <div>
         <iframe
-          style="width:45vw;height:53vh"
+          style="width:45vw;height:53vh;border-radius:10px;filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.5));"
           src="https://www.youtube-nocookie.com/embed/NbQSbZvmfG0?controls=0&rel=0"
           title="YouTube video player"
           frameborder="0"

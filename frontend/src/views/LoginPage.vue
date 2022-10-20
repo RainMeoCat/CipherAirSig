@@ -17,9 +17,11 @@
             prop="username"
           >
             <el-input
+              :key="loginForm.username"
               v-model="loginForm.username"
               autocomplete="off"
               placeholder="輸入帳號"
+              disabled
             />
           </el-form-item>
           <el-form-item
@@ -41,12 +43,20 @@
             >
               登入
             </el-button>
-            <!-- <el-button
-              class="login-btn reg"
-              @click="resetForm()"
+            <el-button
+              type="primary"
+              class="login-btn accounts"
+              @click="accountSwitch(1)"
             >
-              註冊
-            </el-button> -->
+              帳號1
+            </el-button>
+            <el-button
+              type="primary"
+              class="login-btn accounts"
+              @click="accountSwitch(2)"
+            >
+              帳號2
+            </el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -70,11 +80,11 @@ export default {
     })
     const store = useStore()
     function setSha () {
-      const sha256 = require('js-sha256').sha256// 這裡用的是require方法，所以沒用import
-      return sha256(loginForm.password)// 要加密的密碼
+      const sha256 = require('js-sha256').sha256 // 這裡用的是require方法，所以沒用import
+      return sha256(loginForm.password) // 要加密的密碼
     }
     function changePage (page) {
-      loginFormRef.value.validate(valid => {
+      loginFormRef.value.validate((valid) => {
         if (valid) {
           const body = {
             account: loginForm.username,
@@ -84,9 +94,19 @@ export default {
         }
       })
     }
+    function accountSwitch (num) {
+      if (num === 1) {
+        loginForm.username = 'F110156111@nkust.edu.tw'
+        loginForm.password = 'test'
+      } else if (num === 2) {
+        loginForm.username = 'F110156105@nkust.edu.tw'
+        loginForm.password = 'test'
+      }
+    }
     return {
       changePage,
       loginForm,
+      accountSwitch,
       loginFormRef,
       rules
     }
@@ -101,88 +121,88 @@ $phones-media: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow:hidden
+  overflow: hidden;
 }
-.index-title{
+.index-title {
   font-family: consolas;
   font-weight: bold;
   position: absolute;
-  color:rgba(255,255,255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
   transition: 300ms;
   font-size: 25px;
-  left:10px;
+  left: 10px;
   top: 3px;
   &:hover {
-      color:rgba(255, 255, 255, 0.85);
-      transition: 300ms;
+    color: rgba(255, 255, 255, 0.85);
+    transition: 300ms;
   }
   p {
     font-family: consolas;
-    font-size:12px;
-    margin:0px;
-    text-align:left;
+    font-size: 12px;
+    margin: 0px;
+    text-align: left;
   }
 }
 
 @media only screen and (max-width: $phones-media) {
   //手機版css
-  .login-box{
+  .login-box {
     font-size: 8vmin;
-    color:rgba(255,255,255, 0.5)
+    color: rgba(255, 255, 255, 0.5);
   }
 }
 @media only screen and (min-width: $phones-media) {
   //電腦版css
-    .login-box{
+  .login-box {
     font-size: 3.5vmin;
-    color:rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.5);
     width: 295px;
-    padding:25px 20px;
-    background-color: rgba(255,255,255,0.45);
+    padding: 25px 20px;
+    background-color: rgba(255, 255, 255, 0.45);
     border-radius: 5px;
   }
   .forget-pwd {
-    color:rgba(255,255,255, 0.5)!important;
+    color: rgba(255, 255, 255, 0.5) !important;
     transition: 300ms;
     &:hover {
-      color:rgb(0, 195, 255)!important;
+      color: rgb(0, 195, 255) !important;
       transition: 300ms;
     }
   }
-  .login-btn{
+  .login-btn {
     width: 100px;
     height: 35px;
-    border-radius:100px;
+    border-radius: 100px;
     background-color: #ffffff;
     border-color: #dcdfe6;
-    color:#606266;
+    color: #606266;
     transition: 300ms;
     &:hover {
-      color:#606266;
+      color: #606266;
       background-color: #ffffff;
       filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));
       border-color: #dcdfe6;
       transition: 300ms;
     }
-    &.reg{
-      background-color:#8468F3;
+    &.accounts {
+      width: 60px;
+      background-color: #8468f3;
       border-color: #dcdfe6;
-      color:#ffffff;
+      color: #ffffff;
       &:hover {
-        color:#ffffff;
+        color: #ffffff;
         filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));
         transition: 300ms;
       }
     }
   }
-  ::v-deep .el-form-item__label{
-    color:rgba(0, 0, 0, 0.5);
+  ::v-deep .el-form-item__label {
+    color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
   }
-  .el-input{
+  .el-input {
     --el-input-focus-border-color: #8f59ce;
   }
 }
-
 </style>
