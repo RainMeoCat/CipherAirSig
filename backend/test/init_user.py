@@ -17,7 +17,9 @@ for k, v in user.items():
         "email": v["email"],
         "age": v["age"],
         "gender": v["gender"],
-        "password": pwd}
+        "password": pwd,
+        "avatar": "https://imgur.com/J0gDZTE.jpg"
+        }
 
     print(body)
     x = requests.post(url, json=body)
