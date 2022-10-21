@@ -5,7 +5,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 SQLALCHEMY_DATABASE_URI = os.environ.get('CAS_DB_URI')# 記得新增 CAS_DB_URI 環境變數
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-API_BASIC_URL = "https://bas.shiya.site/api"
+API_BASIC_URL = "https://projects.rainmeocat.com/api"
 JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
 BCRYPT_LOG_ROUNDS = 5
 JWT_QUERY_STRING_NAME = 'jwt'
