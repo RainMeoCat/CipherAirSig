@@ -3,7 +3,7 @@ const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 module.exports = defineConfig({
-  publicPath: './',
+  publicPath: '/CipherAirSig',
   configureWebpack: {
     plugins: [
       AutoImport({
@@ -14,7 +14,9 @@ module.exports = defineConfig({
       })
     ],
     devServer: {
-      historyApiFallback: true
+      historyApiFallback: {
+        index: '/CipherAirSig/'
+      }
     }
   },
   transpileDependencies: true
