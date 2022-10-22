@@ -27,6 +27,7 @@ def mfa():
     for index,key in enumerate(user_list.values()):
         if(key['email'] == email):
             target_id = index
+    # 傳入的手部座標集合需要轉換為簽名格式
     login_sign = signProcess.convert(request_body['landmark'],target_id)
     validate, reason = sign_validate.sign_validate(login_sign, target_id)
     print(email)
