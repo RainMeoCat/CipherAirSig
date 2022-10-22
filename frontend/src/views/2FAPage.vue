@@ -210,7 +210,7 @@ export default {
         detected.value = false
       }
     }
-    // overridding hands的繪圖套件
+    // overridding hands的繪圖套件，繪製骨架
     function drawConnectors (ctx, landmarks) {
       const COLORLIST = [
         'rgba(255,234,189,0.5)',

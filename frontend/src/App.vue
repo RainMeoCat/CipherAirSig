@@ -54,7 +54,7 @@
       </template>
       <div style="font-size:16px;text-align:left">
         該系統CipherAirSig可以從視覺上捕捉使用者的手部骨架，並應用手勢變化來簽名，本系統規劃了四種手勢，
-        四種手勢對應每一個筆畫，依據筆畫順序能產生出一個編碼序列，作為密碼，能夠增加簽名生物認證的安全性，同時也會以筆跡、簽名速度來進行驗證。
+        四種手勢對應每一個筆畫，依據筆畫順序能產生出一個編碼序列，作為密碼，能夠增加簽名生物認證的安全性，同時也會以筆跡圖形來進行驗證。
         <div style="width:100%;text-align:center">
           <img
             src="@/assets/簽名流程.png"
@@ -135,6 +135,7 @@
   </div>
 </template>
 <script>
+// dialog用icon
 import { CircleCloseFilled } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
@@ -144,12 +145,15 @@ export default {
   setup () {
     const router = useRouter()
     const store = useStore()
+    // 說明dialoag v-model
     const visible = ref(false)
+    // 跳轉至首頁
     function returnHome () {
       store.commit('resetSign')
       store.commit('changeMode', '')
       router.push('/')
     }
+    // 跳轉至登入頁面
     function enterMode (mode) {
       store.commit('resetSign')
       store.commit('changeMode', mode)

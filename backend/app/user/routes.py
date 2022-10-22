@@ -13,11 +13,12 @@ from flask_jwt_extended import create_access_token, get_jwt_identity
 from flask_jwt_extended.view_decorators import jwt_required
 from sqlalchemy import exc
 
-
+# 登入
 @user.route("/login", methods=["POST"])
 def login():
     account = request.json.get("account")
     user = User.query.filter_by(account=account).first()
+    # 檢索使用者&檢查密碼是否hash
     if user is None:
         return jsonify(status="user not found"), 404
     if len(request.json.get('password')) != 64:
@@ -32,6 +33,7 @@ def login():
         "token": token
     }
     current_app.logger.info(log)
+
     if validate:
         sechmas = {
             "account_id": user.id,
@@ -77,7 +79,6 @@ def user_info():
 
         return jsonify(sechmas), 200
     return jsonify(status="something error"), 500
-
 
 @user.route("/register", methods=['POST'])
 def register():

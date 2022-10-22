@@ -6,6 +6,7 @@ import os
 import re
 from natsort import natsorted
 from dtaidistance import dtw_ndim
+# 手勢密碼檢查
 def pinch_check(sign, template_list):
     PINCH_RANK = {
         "index": 0.1,
@@ -35,9 +36,8 @@ def pinch_check(sign, template_list):
         return True
     else:
         return False
-    # distance = dtw.distance(pinch_signal, template_pinch)
-    return check_count
 
+# 簽名圖形筆跡檢查
 def graph_check(sign, template_list, dist):
     sign_x = []
     sign_y = []

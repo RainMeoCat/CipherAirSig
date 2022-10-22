@@ -79,6 +79,7 @@ export default {
       password: 'test'
     })
     const store = useStore()
+    // 登入，與密碼加密
     function setSha () {
       const sha256 = require('js-sha256').sha256 // 這裡用的是require方法，所以沒用import
       return sha256(loginForm.password) // 要加密的密碼
@@ -94,6 +95,7 @@ export default {
         }
       })
     }
+    // 切換帳號
     function accountSwitch (num) {
       if (num === 1) {
         loginForm.username = 'F110156111@nkust.edu.tw'
