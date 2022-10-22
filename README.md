@@ -76,3 +76,9 @@ bind=0.0.0.0
 
 sudo systemctl restart mysql
 ```
+### 初始化資料庫
+```
+flask db init
+flask db migrate(出問題的話就把migrations資料夾刪除，重新做一次)
+python3 backend/test/init_user.py
+```
